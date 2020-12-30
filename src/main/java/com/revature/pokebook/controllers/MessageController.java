@@ -1,32 +1,72 @@
 package com.revature.pokebook.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.revature.pokebook.models.Message;
+import com.revature.pokebook.services.MessageService;
+
+@Controller
+@RequestMapping(value="/messages")
 public class MessageController 
 {
-
-	public void getMessages(HttpServletRequest request, HttpServletResponse response) 
+	
+	private MessageService ms;
+	
+	//Construction injection
+	@Autowired
+	public MessageController(MessageService ms) 
+	{
+		super();
+		this.ms = ms;
+	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	@ResponseBody
+	public List<Message> getMessages() 
 	{
 		System.out.println("get messages not implemented");
+		return new ArrayList<Message>();
 	}
 
-	public void getMessage(Integer pathParameter, HttpServletRequest request, HttpServletResponse response) 
+	@GetMapping("/{id}")
+	@ResponseBody
+	public ResponseEntity<Message> getMessage(@PathVariable("id") int id) 
 	{
 		System.out.println("get message not implemented");
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
-	public void create(HttpServletRequest request, HttpServletResponse response) 
+	@RequestMapping(method=RequestMethod.POST)
+	@ResponseBody
+	public void create() 
 	{
 		System.out.println("create message not implemented");
 	}
 
-	public void update(HttpServletRequest request, HttpServletResponse response) 
+	@RequestMapping(method=RequestMethod.PATCH)
+	@ResponseBody
+	public void update() 
 	{
 		System.out.println("update message not implemented");
 	}
 
-	public void delete(HttpServletRequest request, HttpServletResponse response) 
+	@RequestMapping(method=RequestMethod.DELETE)
+	@ResponseBody
+	public void delete() 
 	{
 		System.out.println("delete message not implemented");
 	}

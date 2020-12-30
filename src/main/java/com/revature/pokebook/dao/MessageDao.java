@@ -2,8 +2,11 @@ package com.revature.pokebook.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.revature.pokebook.models.Message;
 
+@Repository
 public class MessageDao 
 {
 	public List<Message> getMessages() throws Exception
