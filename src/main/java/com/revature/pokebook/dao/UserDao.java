@@ -20,7 +20,7 @@ public class UserDao
 		return list;
 	}
 	
-	public List<User> getUser(int id) throws Exception
+	public User getUser(int id) throws Exception
 	{
 		throw new Exception("Not Implemented");
 	}

@@ -26,7 +26,7 @@ public class UserService
 		return ud.getUsers();
 	}
 	
-	public List<User> getUser(int id) throws Exception
+	public User getUser(int id) throws Exception
 	{
 		return ud.getUser(id);
 	}
@@ -51,10 +51,23 @@ public class UserService
 		return ud.updateUser(user);
 	}
 	
-	public boolean loginUser(String username, String password) throws Exception
+	public boolean loginUser(User toLogin) throws Exception
 	{
-		//Not Implemented
-		return false;
+		User user;
+		
+		if (toLogin.getId() != 0)
+			user = ud.getUser(toLogin.getId());
+		else if (toLogin.getUsername() != null)
+			user= ud.getUserByUsername(toLogin.getUsername());
+		else if (toLogin.getEmail() != null)
+			user= ud.getUserByEmail(toLogin.getEmail());
+		else
+			return false;
+		
+		if (toLogin.getPassword() == user.getPassword())
+			return true;
+		else
+			return false;
 	}
 	
 	public void logoutUser(User user) throws Exception
