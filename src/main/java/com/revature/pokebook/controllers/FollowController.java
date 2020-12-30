@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,11 +18,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.pokebook.models.Follow;
 import com.revature.pokebook.models.Like;
+import com.revature.pokebook.services.FollowService;
 
 @Controller
 @RequestMapping(value="/follows")
 public class FollowController 
 {
+	
+	private FollowService fs;
+	
+	//Construction injection
+	@Autowired
+	public FollowController(FollowService fs) {
+		super();
+		this.fs = fs;
+	}
 
 	@RequestMapping(method=RequestMethod.GET)
 	@ResponseBody

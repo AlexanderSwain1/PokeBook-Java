@@ -2,10 +2,23 @@ package com.revature.pokebook.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.revature.pokebook.dao.UserDao;
 import com.revature.pokebook.models.User;
 
 public class UserService 
 {
+	
+	private UserDao ud;
+	
+	//Construction injection
+	@Autowired
+	public UserService(UserDao ud) {
+		super();
+		this.ud = ud;
+	}
+	
 	public List<User> getUsers() throws Exception
 	{
 		throw new Exception("Not Implemented");

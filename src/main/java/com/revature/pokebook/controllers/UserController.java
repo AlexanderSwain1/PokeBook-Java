@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,11 +22,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.pokebook.models.Message;
 import com.revature.pokebook.models.User;
+import com.revature.pokebook.services.UserService;
 
 @Controller
 @RequestMapping(value="/users")
-public class UserController 
+public class UserController
 {
+	
+	private UserService us;
+	
+	//Construction injection
+	@Autowired
+	public UserController(UserService us) 
+	{
+		super();
+		this.us = us;
+	}
+	
+	
 	@RequestMapping(method=RequestMethod.GET)
 	@ResponseBody
 	public List<User> getUsers() 

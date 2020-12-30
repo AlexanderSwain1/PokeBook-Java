@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,11 +18,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.pokebook.models.Like;
 import com.revature.pokebook.models.User;
+import com.revature.pokebook.services.FollowService;
+import com.revature.pokebook.services.LikeService;
 
 @Controller
 @RequestMapping(value="/likes")
 public class LikeController 
 {
+	
+	private LikeService ls;
+	
+	//Construction injection
+	@Autowired
+	public LikeController(LikeService ls) {
+		super();
+		this.ls = ls;
+	}
+	
 	@RequestMapping(method=RequestMethod.GET)
 	@ResponseBody
 	public List<Like> getLikes() 
