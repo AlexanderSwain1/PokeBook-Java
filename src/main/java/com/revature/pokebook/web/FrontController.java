@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.pokebook.controllers.FollowController;
 import com.revature.pokebook.controllers.LikeController;
+import com.revature.pokebook.controllers.LoginController;
 import com.revature.pokebook.controllers.MessageController;
 import com.revature.pokebook.controllers.UserController;
 import com.revature.pokebook.utilities.UrlUtilities;
@@ -19,6 +20,7 @@ public class FrontController extends HttpServlet
 	MessageController messageController = new MessageController();
 	FollowController followController = new FollowController();
 	LikeController likeController = new LikeController();
+	LoginController loginController = new LoginController();
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -30,6 +32,8 @@ public class FrontController extends HttpServlet
 		String actionName = UrlUtilities.getAtLevel(request.getRequestURI(), 3);
 		Integer pathParameter = UrlUtilities.getPathParameter(request.getRequestURI());
 		
+		if (controllerName == null)
+			return;
 		//Controller Mapping
 		response.setContentType("application/json");
 		switch (controllerName) 
@@ -39,8 +43,8 @@ public class FrontController extends HttpServlet
 				{
 					if (pathParameter == null)
 						userController.getUsers(request, response);
-					else
-						userController.getUser(pathParameter, request, response);
+					//else
+					//	userController.getUser(pathParameter, request, response);
 				}
 				else
 					switch (actionName)
@@ -55,10 +59,10 @@ public class FrontController extends HttpServlet
 							userController.delete(request, response);
 							break;
 						case "login":
-							userController.login(request, response);
+							loginController.login(request, response);
 							break;
 						case "logout":
-							userController.logout(request, response);
+							loginController.logout(request, response);
 							break;
 						default:
 							response.setStatus(400);
@@ -71,8 +75,8 @@ public class FrontController extends HttpServlet
 				{
 					if (pathParameter == null)
 						messageController.getMessages(request, response);
-					else
-						messageController.getMessage(pathParameter, request, response);
+					//else
+					//	messageController.getMessage(pathParameter, request, response);
 				}
 				else
 					switch (actionName)
@@ -97,8 +101,8 @@ public class FrontController extends HttpServlet
 				{
 					if (pathParameter == null)
 						followController.getFollows(request, response);
-					else
-						followController.getFollow(pathParameter, request, response);
+					//else
+					//	followController.getFollow(pathParameter, request, response);
 				}
 				else
 					switch (actionName)
@@ -123,8 +127,8 @@ public class FrontController extends HttpServlet
 				{
 					if (pathParameter == null)
 						likeController.getLikes(request, response);
-					else
-						likeController.getLike(pathParameter, request, response);
+					//else
+					//	likeController.getLike(pathParameter, request, response);
 				}
 				else
 					switch (actionName)
