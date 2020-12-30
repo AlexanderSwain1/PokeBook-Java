@@ -3,15 +3,29 @@ package com.revature.pokebook.controllers;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.revature.pokebook.services.UserService;
+
 @Controller
 @RequestMapping(value="/users")
-public class UserController 
+public class UserController
 {
+	
+	private UserService us;
+	
+	//Construction injection
+	@Autowired
+	public UserController(UserService us) {
+		super();
+		this.us = us;
+	}
+	
+	
 	@RequestMapping(method=RequestMethod.GET)
 	@ResponseBody
 	public void getUsers(HttpServletRequest request, HttpServletResponse response) 

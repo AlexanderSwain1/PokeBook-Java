@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value="/login")
 public class LoginController 
 {
-	@RequestMapping(value="/login")
+	@RequestMapping(value="/login", method=RequestMethod.GET)
 	@ResponseBody
 	public void login(HttpServletRequest request, HttpServletResponse response) 
 	{
 		System.out.println("login user not implemented");
 	}
 
-	@RequestMapping(value="/logout")
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	@ResponseBody
 	public void logout(HttpServletRequest request, HttpServletResponse response) 
 	{

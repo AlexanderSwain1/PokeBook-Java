@@ -3,15 +3,29 @@ package com.revature.pokebook.controllers;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.revature.pokebook.services.FollowService;
+import com.revature.pokebook.services.LikeService;
+
 @Controller
 @RequestMapping(value="/likes")
 public class LikeController 
 {
+	
+	private LikeService ls;
+	
+	//Construction injection
+	@Autowired
+	public LikeController(LikeService ls) {
+		super();
+		this.ls = ls;
+	}
+	
 	@RequestMapping(method=RequestMethod.GET)
 	@ResponseBody
 	public void getLikes(HttpServletRequest request, HttpServletResponse response) 
