@@ -23,31 +23,31 @@ public class MessageService
 	
 	public List<Message> getMessages() throws Exception
 	{
-		throw new Exception("Not Implemented");
+		return md.getMessages();
 	}
 	
 	public Message getMessage(int id) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		return md.getMessage(id);
 	}
 	
 	public List<Message> getMessagesByPokemonID(int pokemon_id) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		return md.getMessagesByPokemonID(pokemon_id);
 	}
 	
 	public void createMessage(Message message) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		md.createMessage(message);
 	}
 	
 	public void updateMessage(Message message) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		md.updateMessage(message);
 	}
 	
 	public void deleteMessage(Message message) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		md.deleteMessage(message);
 	}
 }

@@ -23,21 +23,21 @@ public class LikeService
 	
 	public List<Like> getLikes() throws Exception
 	{
-		throw new Exception("Not Implemented");
+		return ld.getLikes();
 	}
 	
 	public List<Like> getLikesByUserId(int userId) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		return ld.getLikesByUserId(userId);
 	}
 	
 	public List<Like> getLikesByMessageId(int messageId) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		return ld.getLikesByMessageId(messageId);
 	}
 	
 	public void createLike(Like like) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		ld.createLike(like);
 	}
 }

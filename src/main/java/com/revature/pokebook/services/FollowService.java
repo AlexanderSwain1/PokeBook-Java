@@ -43,6 +43,6 @@ public class FollowService
 	
 	public void deleteFollow(Follow follow) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		fd.deleteFollow(follow);
 	}
 }
