@@ -6,7 +6,6 @@ import org.hibernate.Session;
 
 import com.revature.pokebook.models.User;
 import com.revature.pokebook.utilities.HibernateUtility;
-import com.revature.utils.HibernateUtils;
 
 public class UserDao 
 {
