@@ -23,22 +23,22 @@ public class FollowService
 	
 	public List<Follow> getFollows() throws Exception
 	{
-		throw new Exception("Not Implemented");
+		return fd.getFollows();
 	}
 	
 	public List<Follow> getByFollowerId(int followerId) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		return fd.getByFollowerId(followerId);
 	}
 	
 	public List<Follow> getByPokemonId(int pokemonId) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		return fd.getByPokemonId(pokemonId);
 	}
 	
 	public void createFollow(Follow follow) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		fd.createFollow(follow);
 	}
 	
 	public void deleteFollow(Follow follow) throws Exception

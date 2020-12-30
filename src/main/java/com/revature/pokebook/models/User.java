@@ -33,9 +33,6 @@ public class User
 	
 	@Column(name="user_email", unique = true)
 	private String email;
-	
-	@Column(name = "phone_number")
-	private String phoneNumber;
 
 	public User(int id, String username, String password, String firstName, String lastName, String email,
 			String phoneNumber) {
@@ -46,7 +43,6 @@ public class User
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.phoneNumber = phoneNumber;
 	}
 
 	public User(String username, String password, String firstName, String lastName, String email, String phoneNumber) {
@@ -56,7 +52,6 @@ public class User
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.phoneNumber = phoneNumber;
 	}
 
 	public User() {
@@ -111,14 +106,6 @@ public class User
 		this.email = email;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -128,7 +115,6 @@ public class User
 		result = prime * result + id;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -164,11 +150,6 @@ public class User
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (phoneNumber == null) {
-			if (other.phoneNumber != null)
-				return false;
-		} else if (!phoneNumber.equals(other.phoneNumber))
-			return false;
 		if (username == null) {
 			if (other.username != null)
 				return false;
@@ -180,7 +161,7 @@ public class User
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", email=" + email + ", phoneNumber=" + phoneNumber + "]";
+				+ ", lastName=" + lastName + ", email=" + email + "]";
 	}
 	
 	
