@@ -22,8 +22,10 @@ import com.revature.pokebook.services.FollowService;
 
 @Controller
 @RequestMapping(value="/follows")
+@ResponseBody
 public class FollowController 
 {
+	//I am confused
 	
 	private FollowService fs;
 	
@@ -35,7 +37,7 @@ public class FollowController
 	}
 
 	@RequestMapping(method=RequestMethod.GET)
-	@ResponseBody
+
 	public List<Follow> getFollows() 
 	{
 		System.out.println("get follows not implemented");
@@ -43,7 +45,6 @@ public class FollowController
 	}
 
 	@GetMapping("/{id}")
-	@ResponseBody
 	public ResponseEntity<Follow> getFollow(@PathVariable("id") int id) 
 	{
 		System.out.println("get follow not implemented");
@@ -51,21 +52,18 @@ public class FollowController
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
-	@ResponseBody
 	public void create() 
 	{
 		System.out.println("create follow not implemented");
 	}
 
 	@RequestMapping(method=RequestMethod.PATCH)
-	@ResponseBody
 	public void update() 
 	{
 		System.out.println("update follow not implemented");
 	}
 
 	@RequestMapping(method=RequestMethod.DELETE)
-	@ResponseBody
 	public void delete() 
 	{
 		System.out.println("delete follow not implemented");
