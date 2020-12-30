@@ -70,5 +70,4 @@ public class FollowController
 	{
 		System.out.println("delete follow not implemented");
 	}
-
 }

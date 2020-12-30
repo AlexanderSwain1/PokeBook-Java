@@ -17,8 +17,8 @@ public class User
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="user_id")
 	private int id;
-
-	@Column(name="username")
+	
+	@Column(name="username", unique = true)
 	private String username;
 	
 	@Column(name="password")
@@ -31,7 +31,7 @@ public class User
 	@Column(name="user_last_name")
 	private String lastName;
 	
-	@Column(name="user_email")
+	@Column(name="user_email", unique = true)
 	private String email;
 	
 	@Column(name = "phone_number")
