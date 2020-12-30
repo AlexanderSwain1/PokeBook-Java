@@ -3,10 +3,12 @@ package com.revature.pokebook.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.pokebook.dao.LikeDao;
 import com.revature.pokebook.models.Like;
 
+@Service
 public class LikeService 
 {
 	

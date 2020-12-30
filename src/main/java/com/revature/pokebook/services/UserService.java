@@ -3,10 +3,12 @@ package com.revature.pokebook.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.pokebook.dao.UserDao;
 import com.revature.pokebook.models.User;
 
+@Service
 public class UserService 
 {
 	

@@ -36,10 +36,4 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-
-	<!-- <servlet> <display-name>FrontController</display-name> <servlet-name>FrontController</servlet-name> 
-		<servlet-class>com.revature.pokebook.web.FrontController</servlet-class> 
-		</servlet> <servlet-mapping> <servlet-name>FrontController</servlet-name> 
-		<url-pattern>/*</url-pattern> </servlet-mapping> -->
-
 </web-app>

@@ -31,7 +31,6 @@ public class UserController
 	
 	private UserService us;
 	
-	//Construction injection
 	@Autowired
 	public UserController(UserService us) 
 	{
