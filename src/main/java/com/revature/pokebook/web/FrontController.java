@@ -30,6 +30,9 @@ public class FrontController extends HttpServlet
 		String actionName = UrlUtilities.getAtLevel(request.getRequestURI(), 3);
 		Integer pathParameter = UrlUtilities.getPathParameter(request.getRequestURI());
 		
+		if (controllerName == null) {
+			return;
+		}
 		//Controller Mapping
 		response.setContentType("application/json");
 		switch (controllerName) 

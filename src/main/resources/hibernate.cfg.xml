@@ -8,13 +8,13 @@
 	<session-factory>
 		<!-- JDBC -->
 		<property name="hibernate.connection.username">postgres</property>
-		<property name="hibernate.connection.password">password</property>
-		<property name="hibernate.connection.password">jdbc:postgresql://javafs201130.cvtq9j4axrge.us-east-1.rds.amazonaws.com:5432/postgres</property>
+		<property name="hibernate.connection.password">p4ssw0rd</property>
+		<property name="hibernate.connection.password">jdbc:postgresql://localhost:5432/postgres</property>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		
 		<!-- Hibernate Properties -->
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-		<property name="hibernate.default_schema">pokebook</property>
+		<!-- <property name="hibernate.default_schema">pokebook</property> -->
 		
 		<!-- Hibernate console output -->
 		<property name="hibernate.show_sql">true</property>

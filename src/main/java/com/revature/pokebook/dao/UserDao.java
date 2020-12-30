@@ -6,6 +6,7 @@ import org.hibernate.Session;
 
 import com.revature.pokebook.models.User;
 import com.revature.pokebook.utilities.HibernateUtility;
+import com.revature.utils.HibernateUtils;
 
 public class UserDao 
 {
@@ -33,11 +34,15 @@ public class UserDao
 		throw new Exception("Not Implemented");
 	}
 	
-	public void createUser(User user) throws Exception
-	{
-		throw new Exception("Not Implemented");
+	public void createUser(User user) throws Exception {
+	Session ses = HibernateUtility.getSession();
+	try {
+		ses.save(user);
+		return;
+	} catch (Exception e) {
+		return;
 	}
-	
+}
 	public List<User> updateUser(User user) throws Exception
 	{
 		throw new Exception("Not Implemented");

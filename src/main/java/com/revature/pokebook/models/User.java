@@ -24,14 +24,12 @@ public class User
 	@Column(name="password")
 	private String password;
 	
-	
 	@Column(name="user_first_name")
 	private String firstName;
 	
 	
 	@Column(name="user_last_name")
 	private String lastName;
-	
 	
 	@Column(name="user_email")
 	private String email;
