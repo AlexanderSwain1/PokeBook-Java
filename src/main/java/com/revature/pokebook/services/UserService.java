@@ -11,10 +11,8 @@ import com.revature.pokebook.models.User;
 @Service
 public class UserService 
 {
-	
 	private UserDao ud;
 	
-	//Construction injection
 	@Autowired
 	public UserService(UserDao ud) 
 	{
@@ -47,9 +45,9 @@ public class UserService
 		ud.createUser(user);
 	}
 	
-	public List<User> updateUser(User user)
+	public void updateUser(User user)
 	{
-		return ud.updateUser(user);
+		ud.updateUser(user);
 	}
 	
 	public boolean loginUser(User toLogin)

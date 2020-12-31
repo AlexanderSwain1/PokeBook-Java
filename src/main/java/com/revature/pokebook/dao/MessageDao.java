@@ -10,9 +10,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.revature.models.Home;
+
 import com.revature.pokebook.models.Message;
-import com.revature.utils.HibernateUtils;
+
 
 @Repository
 public class MessageDao 
@@ -22,7 +22,7 @@ public class MessageDao
 	private SessionFactory sf;
 	
 	
-	public List<Message> getMessages() throws Exception
+	public List<Message> getMessages()
 	{
 		Session s = sf.getCurrentSession();
 		CriteriaQuery<Message> cq = s.getCriteriaBuilder().createQuery(Message.class);
@@ -30,32 +30,32 @@ public class MessageDao
 		return s.createQuery(cq).getResultList();
 	}
 	
-	public Message getMessage(int id) throws Exception
+	public Message getMessage(int id)
 	{
 		Session s = sf.getCurrentSession();
 		return s.get(Message.class, id);
 	}
 	
-	public List<Message> getMessagesByPokemonID(int pokemon_id) throws Exception
+	public List<Message> getMessagesByPokemonID(int pokemon_id)
 	{
 		Session s = sf.getCurrentSession();
 		List<Message> list = s.createQuery("FROM Messages WHERE pokemon_id = " + pokemon_id).list();
 		return list;
 	}
 	
-	public void createMessage(Message message) throws Exception
+	public void createMessage(Message message)
 	{
 		Session s = sf.getCurrentSession();
 		s.save(message);
 	}
 	
-	public void updateMessage(Message message) throws Exception
+	public void updateMessage(Message message)
 	{
 		Session s = sf.getCurrentSession();
 		s.update(message);
 	}
 	
-	public void deleteMessage(Message message) throws Exception
+	public void deleteMessage(Message message)
 	{
 		Session s = sf.getCurrentSession();
 		s.delete(message);

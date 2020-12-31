@@ -17,7 +17,7 @@ public class LikeDao
 	@Autowired
 	private SessionFactory sf;
 	
-	public List<Like> getLikes() throws Exception
+	public List<Like> getLikes()
 	{
 		Session s = sf.getCurrentSession();
 		CriteriaQuery<Like> cq = s.getCriteriaBuilder().createQuery(Like.class);
@@ -25,27 +25,27 @@ public class LikeDao
 		return s.createQuery(cq).getResultList();
 	}
 	
-	public List<Like> getLikesByUserId(int userId) throws Exception
+	public List<Like> getLikesByUserId(int userId)
 	{
 		Session s = sf.getCurrentSession();
 		List<Like> list = s.createQuery("FROM Likes WHERE user_id = " + userId).list();
 		return list;
 	}
 	
-	public List<Like> getLikesByMessageId(int messageId) throws Exception
+	public List<Like> getLikesByMessageId(int messageId)
 	{
 		Session s = sf.getCurrentSession();
 		List<Like> list = s.createQuery("FROM Likes WHERE message_id = " + messageId).list();
 		return list;
 	}
 	
-	public void createLike(Like like) throws Exception
+	public void createLike(Like like)
 	{
 		Session s = sf.getCurrentSession();
 		s.save(like);
 	}
 	
-	public void deleteLike(Like like) throws Exception
+	public void deleteLike(Like like)
 	{
 		Session s = sf.getCurrentSession();
 		s.delete(like);

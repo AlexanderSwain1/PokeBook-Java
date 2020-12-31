@@ -11,42 +11,40 @@ import com.revature.pokebook.models.Message;
 @Service
 public class MessageService 
 {
-	
 	private MessageDao md;
-	
-	//Construction injection
+
 	@Autowired
 	public MessageService(MessageDao md) {
 		super();
 		this.md = md;
 	}
 	
-	public List<Message> getMessages() throws Exception
+	public List<Message> getMessages()
 	{
 		return md.getMessages();
 	}
 	
-	public Message getMessage(int id) throws Exception
+	public Message getMessage(int id)
 	{
 		return md.getMessage(id);
 	}
 	
-	public List<Message> getMessagesByPokemonID(int pokemon_id) throws Exception
+	public List<Message> getMessagesByPokemonID(int pokemon_id)
 	{
 		return md.getMessagesByPokemonID(pokemon_id);
 	}
 	
-	public void createMessage(Message message) throws Exception
+	public void createMessage(Message message)
 	{
 		md.createMessage(message);
 	}
 	
-	public void updateMessage(Message message) throws Exception
+	public void updateMessage(Message message)
 	{
 		md.updateMessage(message);
 	}
 	
-	public void deleteMessage(Message message) throws Exception
+	public void deleteMessage(Message message)
 	{
 		md.deleteMessage(message);
 	}

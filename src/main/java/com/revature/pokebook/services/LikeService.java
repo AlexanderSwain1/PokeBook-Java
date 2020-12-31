@@ -38,6 +38,8 @@ public class LikeService
 	
 	public void delete(int id)
 	{
-		ld.deleteLike(id);
+		Like l = new Like();
+		l.setId(id);
+		ld.deleteLike(l);
 	}
 }

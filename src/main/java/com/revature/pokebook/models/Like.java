@@ -25,27 +25,53 @@ public class Like
 	
 	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name = "user_id")
-	private String userId;
+	private int userId;
 	
 	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name = "message_id")
-	private String messageId;
+	private int messageId;
 
-	public Like(int id, String userId, String messageId) {
+	public Like() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Like(int id, int userId, int messageId) {
 		super();
 		this.id = id;
 		this.userId = userId;
 		this.messageId = messageId;
 	}
 
-	public Like(String userId, String messageId) {
+	public Like(int userId, int messageId) {
 		super();
 		this.userId = userId;
 		this.messageId = messageId;
 	}
 
-	public Like() {
-		super();
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, messageId, userId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Like other = (Like) obj;
+		return id == other.id && messageId == other.messageId && userId == other.userId;
+	}
+
+	@Override
+	public String toString() {
+		return "Like [id=" + id + ", userId=" + userId + ", messageId=" + messageId + "]";
 	}
 
 	public int getId() {
@@ -56,59 +82,19 @@ public class Like
 		this.id = id;
 	}
 
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
-	public String getMessageId() {
+	public int getMessageId() {
 		return messageId;
 	}
 
-	public void setMessageId(String messageId) {
+	public void setMessageId(int messageId) {
 		this.messageId = messageId;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		result = prime * result + ((messageId == null) ? 0 : messageId.hashCode());
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Like other = (Like) obj;
-		if (id != other.id)
-			return false;
-		if (messageId == null) {
-			if (other.messageId != null)
-				return false;
-		} else if (!messageId.equals(other.messageId))
-			return false;
-		if (userId == null) {
-			if (other.userId != null)
-				return false;
-		} else if (!userId.equals(other.userId))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Like [id=" + id + ", userId=" + userId + ", messageId=" + messageId + "]";
-	}
-	
 }
