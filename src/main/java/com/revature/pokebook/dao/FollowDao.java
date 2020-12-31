@@ -16,7 +16,6 @@ public class FollowDao
 	private SessionFactory sf;
 	
 	
-	
 	public List<Follow> getByUserId(int userId) throws Exception
 	{
 		Session s = sf.getCurrentSession();
@@ -24,20 +23,24 @@ public class FollowDao
 		return list;
 	}
 	
-	public List<Follow> getByPokemonId(int pokemonId) throws Exception
+	public List<Follow> getByPokemonId(int pokemonId)
 	{
+
 		Session s = sf.getCurrentSession();
 		List<Follow> list = s.createQuery("FROM Follows WHERE pokemon_id = " + pokemonId).list();
 		return list;
+
 	}
 	
-	public void createFollow(Follow follow) throws Exception
+	public void createFollow(Follow follow)
 	{
 		Session s = sf.getCurrentSession();
+
 		s.save(follow);
+
 	}
 	
-	public void deleteFollow(Follow follow) throws Exception
+	public void deleteFollow(Follow follow)
 	{
 		Session s = sf.getCurrentSession();
 		s.delete(follow);

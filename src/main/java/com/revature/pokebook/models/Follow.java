@@ -27,4 +27,6 @@ public class Follow
 	
 	@Column(name = "pokemon_id")
 	private int pokemonId;
+	
+	
 }
