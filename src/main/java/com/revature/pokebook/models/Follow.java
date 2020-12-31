@@ -104,4 +104,5 @@ public class Follow
 	public String toString() {
 		return "Follow [id=" + id + ", userId=" + userId + ", pokemonId=" + pokemonId + "]";
 	}
+
 }

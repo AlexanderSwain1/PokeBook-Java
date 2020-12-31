@@ -33,11 +33,15 @@ public class FollowService
 	
 	public void createFollow(int userId, int pokeId)
 	{
-		fd.createFollow(userId, pokeId);
+		Follow f = new Follow(userId, pokeId);
+		fd.createFollow(f);
 	}
 	
 	public void deleteFollow(int id)
 	{
-		fd.deleteFollow(id);
+		Follow f = new Follow();
+		f.setId(id);
+		fd.deleteFollow(f);
 	}
+	
 }

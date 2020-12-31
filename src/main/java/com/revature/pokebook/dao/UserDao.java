@@ -2,55 +2,51 @@ package com.revature.pokebook.dao;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaQuery;
+
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.revature.pokebook.models.User;
-import com.revature.pokebook.utilities.HibernateUtility;
 
 @Repository
 public class UserDao 
 {
+	@Autowired
+	private SessionFactory sf;
+	
 	public List<User> getUsers() throws Exception
 	{
-		Session ses = HibernateUtility.getSession();
-
-		List<User> list = ses.createQuery("FROM User").list();
-		
-		return list;
+		Session s = sf.getCurrentSession();
+		CriteriaQuery<User> cq = s.getCriteriaBuilder().createQuery(User.class);
+		cq.from(User.class);
+		return s.createQuery(cq).getResultList();
 	}
 	
 	public User getUser(int id) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		Session s = sf.getCurrentSession();
+		return s.get(User.class, id);
 	}
 	
 	public User getUserByUsername(String username) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		Session s = sf.getCurrentSession();
+		return s.get(User.class, username);
 	}
 	
 	public User getUserByEmail(String email) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		Session s = sf.getCurrentSession();
+		return s.get(User.class, email);
 	}
 	
-	public void createUser(User user) throws Exception 
-	{
-		Session ses = HibernateUtility.getSession();
-		try 
-		{
-			ses.save(user);
-			return;
-		} 
-		catch (Exception e) 
-		{
-			return;
-		}
+	
+	public void createUser(User user) throws Exception {
+		Session s = sf.getCurrentSession();
+		s.save(user);
 	}
 	
-	public List<User> updateUser(User user) throws Exception
-	{
-		throw new Exception("Not Implemented");
-	}
 }

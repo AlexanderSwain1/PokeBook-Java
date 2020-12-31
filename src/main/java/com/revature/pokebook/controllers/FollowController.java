@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +19,14 @@ import com.revature.pokebook.models.Follow;
 import com.revature.pokebook.services.FollowService;
 
 @Controller
-@RequestMapping(value="/follows")
 @ResponseBody
-public class FollowController 
-{
+@CrossOrigin // Connect to EC2 Eventually
+@RequestMapping(value="/follows")
+
+
+public class FollowController {
+	
+
 	private FollowService fs;
 	
 	@Autowired
@@ -62,5 +67,8 @@ public class FollowController
 	{
 		fs.deleteFollow(id);
 	}
+
+
+	
 
 }
