@@ -62,12 +62,6 @@ public class UserController
 		us.updateUser(user);
 	}
 
-	//@DeleteMapping
-	//public void delete(@RequestBody User user) 
-	//{
-	//	us.deleteUser(user);
-	//}
-	
 	@GetMapping("/login")
 	public ResponseEntity<Boolean> login(@RequestBody User user) 
 	{

@@ -25,12 +25,10 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
 			value="org.postgresql.Driver" />
-		<!-- You will need to set your own RDS location for the URL along with 
-			your Username and Password -->
 		<property name="url"
 			value="jdbc:postgresql://localhost:5432/postgres" />
 		<property name="username" value="postgres" />
-		<property name="password" value="Gokuisntgoku25!" />
+		<property name="password" value="PaenutButtre2" />
 	</bean>
 
 	<bean name="sessionFactory"

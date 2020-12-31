@@ -1,3 +1,4 @@
+/*
 package com.revature.pokebook.dao.test;
 
 import java.util.List;
@@ -47,3 +48,4 @@ public class UserDAOTest {
 		throw new Exception("Not Implemented");
 	}
 }
+*/

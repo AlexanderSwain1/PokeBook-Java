@@ -1,3 +1,4 @@
+/*
 package com.revature.pokebook.dao.test.testing;
 
 import static org.junit.Assert.assertTrue;
@@ -23,3 +24,4 @@ public class UserDAOTesting {
 			}
 	}
 }
+*/
