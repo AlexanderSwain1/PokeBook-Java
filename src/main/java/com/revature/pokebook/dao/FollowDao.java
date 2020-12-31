@@ -3,6 +3,7 @@ package com.revature.pokebook.dao;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaQuery;
+import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.revature.pokebook.models.Follow;
 
 @Repository
-//@Transactional
+@Transactional
 public class FollowDao {
 	
 	@Autowired

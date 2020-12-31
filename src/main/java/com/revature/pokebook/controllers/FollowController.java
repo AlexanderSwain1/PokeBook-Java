@@ -3,12 +3,13 @@ package com.revature.pokebook.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,57 +18,51 @@ import com.revature.pokebook.models.Follow;
 import com.revature.pokebook.services.FollowService;
 
 @Controller
+@ResponseBody
+@CrossOrigin // Connect to EC2 Eventually
 @RequestMapping(value="/follows")
-public class FollowController 
-{
+public class FollowController {
 	
 	private FollowService fs;
 	
-	//Construction injection
 	@Autowired
 	public FollowController(FollowService fs) {
 		super();
 		this.fs = fs;
 	}
-
-	@RequestMapping(method=RequestMethod.GET)
-	@ResponseBody
-	public List<Follow> getFollows() 
+	
+	//Get all followed pages of a user
+	@GetMapping("/{id}")
+	public List<Follow> getFollowsByUser(@PathVariable("id")int id) 
 	{
 
-		List<Follow> list = fs.getFollows();
+		List<Follow> list = fs.getByUserId();
 		
-		System.out.println("get follows not implemented");
 		return new ArrayList<Follow>();
 	}
-
+	
+	//Get Follows by Pokemon
 	@GetMapping("/{id}")
-	@ResponseBody
-	public ResponseEntity<Follow> getFollow(@PathVariable("id") int id) 
+	public List<Follow> getFollowsByPokemon(@PathVariable("id")int id) 
 	{
-		System.out.println("get follow not implemented");
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-	}
 
-	@RequestMapping(method=RequestMethod.POST)
-	@ResponseBody
-	public void create() 
-	{
-		System.out.println("create follow not implemented");
+		List<Follow> list = fs.getByPokemonId();
+		
+		return new ArrayList<Follow>();
 	}
-
-	@RequestMapping(method=RequestMethod.PATCH)
-	@ResponseBody
-	public void update() 
+	
+	
+	@PutMapping
+	public void create(@RequestBody int id) 
 	{
-		System.out.println("update follow not implemented");
+		Follow f = new Follow();
+		f.
+		
 	}
 
 	@RequestMapping(method=RequestMethod.DELETE)
-	@ResponseBody
 	public void delete() 
 	{
-		System.out.println("delete follow not implemented");
+		
 	}
-
 }
