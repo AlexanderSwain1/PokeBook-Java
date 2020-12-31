@@ -15,9 +15,9 @@
     http://www.springframework.org/schema/aop 
     http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
-	<context:component-scan base-package="com.revature.pokebook"></context:component-scan>
-	<mvc:annotation-driven></mvc:annotation-driven>
+	<context:component-scan base-package="com.revature"></context:component-scan>
 	
+	<mvc:annotation-driven></mvc:annotation-driven>
 	
 	<tx:annotation-driven/>
 
@@ -28,9 +28,9 @@
 		<!-- You will need to set your own RDS location for the URL along with 
 			your Username and Password -->
 		<property name="url"
-			value="jdbc:postgresql://database-1.cqaqrfkcr43i.us-east-2.rds.amazonaws.com:5432/postgres" />
+			value="jdbc:postgresql://localhost:5432/postgres" />
 		<property name="username" value="postgres" />
-		<property name="password" value="p4ssw0rd" />
+		<property name="password" value="PaenutButtre2" />
 	</bean>
 
 	<bean name="sessionFactory"
@@ -41,7 +41,7 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 				<prop key="show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 				<prop key="hibernate.default_schema">pokebook</prop>
 			</props>
 		</property>

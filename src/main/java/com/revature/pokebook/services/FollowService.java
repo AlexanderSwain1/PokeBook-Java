@@ -21,9 +21,11 @@ public class FollowService
 		this.fd = fd;
 	}
 	
-	public List<Follow> getFollows() throws Exception
+	public List<Follow> getFollows()
 	{
-		throw new Exception("Not Implemented");
+		List<Follow> list = fd.getFollows();
+		
+		return list;
 	}
 	
 	public List<Follow> getByFollowerId(int followerId) throws Exception

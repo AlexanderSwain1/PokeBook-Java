@@ -3,9 +3,6 @@ package com.revature.pokebook.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.pokebook.models.Follow;
-import com.revature.pokebook.models.Like;
 import com.revature.pokebook.services.FollowService;
 
 @Controller
@@ -38,6 +34,9 @@ public class FollowController
 	@ResponseBody
 	public List<Follow> getFollows() 
 	{
+
+		List<Follow> list = fs.getFollows();
+		
 		System.out.println("get follows not implemented");
 		return new ArrayList<Follow>();
 	}
