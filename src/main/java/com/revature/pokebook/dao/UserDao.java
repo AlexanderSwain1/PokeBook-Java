@@ -35,15 +35,20 @@ public class UserDao
 		throw new Exception("Not Implemented");
 	}
 	
-	public void createUser(User user) throws Exception {
-	Session ses = HibernateUtility.getSession();
-	try {
-		ses.save(user);
-		return;
-	} catch (Exception e) {
-		return;
+	public void createUser(User user) throws Exception 
+	{
+		Session ses = HibernateUtility.getSession();
+		try 
+		{
+			ses.save(user);
+			return;
+		} 
+		catch (Exception e) 
+		{
+			return;
+		}
 	}
-}
+	
 	public List<User> updateUser(User user) throws Exception
 	{
 		throw new Exception("Not Implemented");
