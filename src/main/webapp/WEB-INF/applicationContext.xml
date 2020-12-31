@@ -26,10 +26,13 @@
 		<property name="driverClassName"
 			value="org.postgresql.Driver" />
 		<property name="url"
-			value="jdbc:postgresql://localhost:5432/postgres" />
-		<property name="username" value="postgres" />
-		<property name="password" value="PaenutButtre2" />
+			value="jdbc:postgresql://javafs201130.c5srn7vdmkt3.us-east-2.rds.amazonaws.com:5432/postgres" />
+		<property name="username" value="" />
+		<property name="password" value="" />
 	</bean>
+
+	<!-- RDS Endpoint:   javafs201130.c5srn7vdmkt3.us-east-2.rds.amazonaws.com -->
+	<!-- EC2 DNS:        ec2-3-19-211-125.us-east-2.compute.amazonaws.com      -->
 
 	<bean name="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -53,3 +56,8 @@
 
 
 </beans>
+
+
+
+
+<!-- postgres PaenutButtre2 -->
