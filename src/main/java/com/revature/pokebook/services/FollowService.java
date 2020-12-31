@@ -10,39 +10,37 @@ import com.revature.pokebook.models.Follow;
 
 @Service
 public class FollowService 
-{
-	
+{	
 	private FollowDao fd;
 	
-	//Construction injection
 	@Autowired
 	public FollowService(FollowDao fd) {
 		super();
 		this.fd = fd;
 	}
 	
-	public List<Follow> getFollows() throws Exception
+	public List<Follow> getByFollowerId(int followerId)
 	{
-		throw new Exception("Not Implemented");
+		List<Follow> list = fd.getByFollowerId(followerId);
+		return list;
 	}
 	
-	public List<Follow> getByFollowerId(int followerId) throws Exception
+	public List<Follow> getByPokemonId(int pokemonId)
 	{
-		throw new Exception("Not Implemented");
+		List<Follow> list = fd.getByPokemonId(pokemonId);
+		return list;
 	}
 	
-	public List<Follow> getByPokemonId(int pokemonId) throws Exception
+	public void createFollow(int userId, int pokeId)
 	{
-		throw new Exception("Not Implemented");
+		Follow f = new Follow(userId, pokeId);
+		fd.createFollow(f);
 	}
 	
-	public void createFollow(Follow follow) throws Exception
+	public void deleteFollow(int id)
 	{
-		throw new Exception("Not Implemented");
-	}
-	
-	public void deleteFollow(Follow follow) throws Exception
-	{
-		throw new Exception("Not Implemented");
+		Follow f = new Follow();
+		f.setId(id);
+		fd.deleteFollow(f);
 	}
 }

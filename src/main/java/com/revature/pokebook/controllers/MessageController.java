@@ -24,7 +24,6 @@ public class MessageController
 	
 	private MessageService ms;
 	
-	//Construction injection
 	@Autowired
 	public MessageController(MessageService ms) 
 	{

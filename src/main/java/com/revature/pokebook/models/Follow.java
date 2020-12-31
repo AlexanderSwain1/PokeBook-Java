@@ -1,5 +1,7 @@
 package com.revature.pokebook.models;
 
+import java.util.Objects;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,4 +29,60 @@ public class Follow
 	
 	@Column(name = "pokemon_id")
 	private int pokemonId;
+
+	
+	public Follow() {
+		super();
+	}
+	public Follow(int userId, int pokemonId) {
+		super();
+		this.userId = userId;
+		this.pokemonId = pokemonId;
+	}
+	public Follow(int id, int userId, int pokemonId) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.pokemonId = pokemonId;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, pokemonId, userId);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Follow other = (Follow) obj;
+		return id == other.id && pokemonId == other.pokemonId && userId == other.userId;
+	}
+	@Override
+	public String toString() {
+		return "Follow [id=" + id + ", userId=" + userId + ", pokemonId=" + pokemonId + "]";
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public int getPokemonId() {
+		return pokemonId;
+	}
+	public void setPokemonId(int pokemonId) {
+		this.pokemonId = pokemonId;
+	}
 }

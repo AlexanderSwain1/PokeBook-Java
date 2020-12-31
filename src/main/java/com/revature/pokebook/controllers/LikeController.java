@@ -7,8 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,47 +24,47 @@ import com.revature.pokebook.services.LikeService;
 @RequestMapping(value="/likes")
 public class LikeController 
 {
-	
 	private LikeService ls;
 	
-	//Construction injection
 	@Autowired
 	public LikeController(LikeService ls) {
 		super();
 		this.ls = ls;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public List<Like> getLikes() 
-	{
-		System.out.println("get follows not implemented");
-		return new ArrayList<Like>();
-	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Like> getLike(@PathVariable("id") int id) 
+	public ResponseEntity<List<Like>> getLikesByUserId(@PathVariable("id") int id) 
 	{
-		System.out.println("get like not implemented");
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		List<Like> list = ls.getLikesByUserId(id);
+		if(list==null) {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(list);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<List<Like>> getLikesByMessageId(@PathVariable("id") int id) 
+	{
+		List<Like> list = ls.getLikesByMessageId(id);
+		if(list==null) {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(list);
+	}
+	
+	
+
+	@PostMapping
+	public void create(@RequestBody int userId, int pokeId) 
+	{
+		ls.createFollow(userId, pokeId);
 	}
 
-
-	@RequestMapping(method=RequestMethod.POST)
-	public void create() 
+	@DeleteMapping
+	public void delete(@RequestBody int id) 
 	{
-		System.out.println("create follow not implemented");
-	}
-
-	@RequestMapping(method=RequestMethod.PATCH)
-	public void update() 
-	{
-		System.out.println("update follow not implemented");
-	}
-
-	@RequestMapping(method=RequestMethod.DELETE)
-	public void delete() 
-	{
-		System.out.println("delete follow not implemented");
+		ls.deleteFollow(id);
 	}
 
 }

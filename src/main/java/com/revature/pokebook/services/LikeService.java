@@ -11,33 +11,33 @@ import com.revature.pokebook.models.Like;
 @Service
 public class LikeService 
 {
-	
 	private LikeDao ld;
 	
-	//Construction injection
 	@Autowired
 	public LikeService(LikeDao ld) {
 		super();
 		this.ld = ld;
 	}
 	
-	public List<Like> getLikes() throws Exception
+	
+	public List<Like> getLikesByUserId(int userId)
 	{
-		throw new Exception("Not Implemented");
+		return ld.getLikesByUserId(userId);
 	}
 	
-	public List<Like> getLikesByUserId(int userId) throws Exception
+	public List<Like> getLikesByMessageId(int messageId)
 	{
-		throw new Exception("Not Implemented");
+		return ld.getLikesByUserId(messageId);
 	}
 	
-	public List<Like> getLikesByMessageId(int messageId) throws Exception
+	public void create(int userId, int msgId)
 	{
-		throw new Exception("Not Implemented");
+		Like l = new Like(userId, msgId);
+		ld.createLike(l);
 	}
 	
-	public void createLike(Like like) throws Exception
+	public void delete(int Id)
 	{
-		throw new Exception("Not Implemented");
+		ld.deleteLike(id);
 	}
 }
