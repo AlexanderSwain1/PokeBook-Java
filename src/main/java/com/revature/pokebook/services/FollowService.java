@@ -19,28 +19,25 @@ public class FollowService
 		this.fd = fd;
 	}
 	
-	public List<Follow> getByFollowerId(int followerId)
+
+	public List<Follow> getByUserId(int followerId)
 	{
-		List<Follow> list = fd.getByFollowerId(followerId);
-		return list;
+		return fd.getByUserId(followerId);
+		
 	}
 	
 	public List<Follow> getByPokemonId(int pokemonId)
 	{
-		List<Follow> list = fd.getByPokemonId(pokemonId);
-		return list;
+		return fd.getByPokemonId(pokemonId);
 	}
 	
 	public void createFollow(int userId, int pokeId)
 	{
-		Follow f = new Follow(userId, pokeId);
-		fd.createFollow(f);
+		fd.createFollow(userId, pokeId);
 	}
 	
 	public void deleteFollow(int id)
 	{
-		Follow f = new Follow();
-		f.setId(id);
-		fd.deleteFollow(f);
+		fd.deleteFollow(id);
 	}
 }

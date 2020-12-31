@@ -33,7 +33,7 @@ public class FollowController
 	@GetMapping("/{id}")
 	public ResponseEntity<List<Follow>> getFollowsByUser(@PathVariable("id") int id) 
 	{
-		List<Follow> list = fs.getByFollowerId(id);
+		List<Follow> list = fs.getByUserId(id);
 		if(list==null) {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
@@ -62,6 +62,5 @@ public class FollowController
 	{
 		fs.deleteFollow(id);
 	}
+
 }
-
-

@@ -36,7 +36,7 @@ public class LikeService
 		ld.createLike(l);
 	}
 	
-	public void delete(int Id)
+	public void delete(int id)
 	{
 		ld.deleteLike(id);
 	}

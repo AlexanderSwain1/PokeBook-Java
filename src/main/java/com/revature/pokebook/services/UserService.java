@@ -23,41 +23,55 @@ public class UserService
 	
 	public List<User> getUsers() throws Exception
 	{
-		throw new Exception("Not Implemented");
+		return ud.getUsers();
 	}
 	
-	public List<User> getUser(int id) throws Exception
+	public User getUser(int id) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		return ud.getUser(id);
 	}
 	
 	public User getUserByUsername(String username) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		return ud.getUserByUsername(username);
 	}
 	
 	public User getUserByEmail(String email) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		return ud.getUserByEmail(email);
 	}
 	
 	public void createUser(User user) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		ud.createUser(user);
 	}
 	
 	public List<User> updateUser(User user) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		return ud.updateUser(user);
 	}
 	
-	public User loginUser(String username, String password) throws Exception
+	public boolean loginUser(User toLogin) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		User user;
+		
+		if (toLogin.getId() != 0)
+			user = ud.getUser(toLogin.getId());
+		else if (toLogin.getUsername() != null)
+			user= ud.getUserByUsername(toLogin.getUsername());
+		else if (toLogin.getEmail() != null)
+			user= ud.getUserByEmail(toLogin.getEmail());
+		else
+			return false;
+		
+		if (toLogin.getPassword() == user.getPassword())
+			return true;
+		else
+			return false;
 	}
 	
 	public void logoutUser(User user) throws Exception
 	{
-		throw new Exception("Not Implemented");
+		//Not Implemented
 	}
 }

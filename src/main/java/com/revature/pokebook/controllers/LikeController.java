@@ -52,19 +52,17 @@ public class LikeController
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(list);
 	}
-	
-	
 
 	@PostMapping
 	public void create(@RequestBody int userId, int pokeId) 
 	{
-		ls.createFollow(userId, pokeId);
+		//ls.createFollow(userId, pokeId);
 	}
 
 	@DeleteMapping
 	public void delete(@RequestBody int id) 
 	{
-		ls.deleteFollow(id);
+		//ls.deleteFollow(id);
 	}
 
 }
