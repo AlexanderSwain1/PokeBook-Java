@@ -16,42 +16,43 @@ public class UserService
 	
 	//Construction injection
 	@Autowired
-	public UserService(UserDao ud) {
+	public UserService(UserDao ud) 
+	{
 		super();
 		this.ud = ud;
 	}
 	
-	public List<User> getUsers() throws Exception
+	public List<User> getUsers()
 	{
 		return ud.getUsers();
 	}
 	
-	public User getUser(int id) throws Exception
+	public User getUser(int id)
 	{
 		return ud.getUser(id);
 	}
 	
-	public User getUserByUsername(String username) throws Exception
+	public User getUserByUsername(String username)
 	{
 		return ud.getUserByUsername(username);
 	}
 	
-	public User getUserByEmail(String email) throws Exception
+	public User getUserByEmail(String email)
 	{
 		return ud.getUserByEmail(email);
 	}
 	
-	public void createUser(User user) throws Exception
+	public void createUser(User user)
 	{
 		ud.createUser(user);
 	}
 	
-	public List<User> updateUser(User user) throws Exception
+	public List<User> updateUser(User user)
 	{
 		return ud.updateUser(user);
 	}
 	
-	public boolean loginUser(User toLogin) throws Exception
+	public boolean loginUser(User toLogin)
 	{
 		User user;
 		
@@ -70,7 +71,7 @@ public class UserService
 			return false;
 	}
 	
-	public void logoutUser(User user) throws Exception
+	public void logoutUser(User user)
 	{
 		//Not Implemented
 	}

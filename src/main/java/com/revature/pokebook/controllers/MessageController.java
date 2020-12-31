@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.pokebook.models.Message;
+import com.revature.pokebook.models.User;
 import com.revature.pokebook.services.MessageService;
 
 @Controller
@@ -24,6 +26,7 @@ public class MessageController
 	
 	private MessageService ms;
 	
+	//Construction injection
 	@Autowired
 	public MessageController(MessageService ms) 
 	{
@@ -34,33 +37,36 @@ public class MessageController
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Message> getMessages() 
 	{
-		System.out.println("get messages not implemented");
-		return new ArrayList<Message>();
+		return ms.getMessages();
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Message> getMessage(@PathVariable("id") int id) 
 	{
-		System.out.println("get message not implemented");
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		
+		Message result = ms.getMessage(id);
+		if (result == null)
+			return ResponseEntity.status(HttpStatus.OK).body(result);
+		else
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
-	public void create() 
+	public void create(@RequestBody Message message) 
 	{
-		System.out.println("create message not implemented");
+		ms.createMessage(message);
 	}
 
 	@RequestMapping(method=RequestMethod.PATCH)
-	public void update() 
+	public void update(@RequestBody Message message) 
 	{
-		System.out.println("update message not implemented");
+		ms.updateMessage(message);
 	}
 
 	@RequestMapping(method=RequestMethod.DELETE)
-	public void delete() 
+	public void delete(@RequestBody Message message) 
 	{
-		System.out.println("delete message not implemented");
+		ms.deleteMessage(message);
 	}
 
 }

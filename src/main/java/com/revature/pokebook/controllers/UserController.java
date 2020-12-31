@@ -39,39 +39,44 @@ public class UserController
 	@RequestMapping(method=RequestMethod.GET)
 	public List<User> getUsers() 
 	{
-		System.out.println("get users not implemented");
-		return new ArrayList<User>();
+		return us.getUsers();
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getUser(@PathVariable("id") int id) 
 	{
-		System.out.println("get user not implemented");
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		User result = us.getUser(id);
+		if (result == null)
+			return ResponseEntity.status(HttpStatus.OK).body(result);
+		else
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
 	}
 
 	@PostMapping
 	public void create(@RequestBody User user) 
 	{
-		System.out.println("create user not implemented");
+		us.createUser(user);
 	}
 
 	@PutMapping
 	public void update(@RequestBody User user) 
 	{
-		System.out.println("update user not implemented");
+		us.updateUser(user);
 	}
 
-	@DeleteMapping
-	public void delete(@RequestBody User user) 
-	{
-		System.out.println("delete user not implemented");
-	}
+	//@DeleteMapping
+	//public void delete(@RequestBody User user) 
+	//{
+	//	us.deleteUser(user);
+	//}
 	
 	@GetMapping("/login")
-	public void login(@RequestBody User user) 
+	public ResponseEntity<Boolean> login(@RequestBody User user) 
 	{
-		System.out.println("login user not implemented");
+		if (us.loginUser(user))
+			return ResponseEntity.status(HttpStatus.OK).body(true);
+		else
+			return ResponseEntity.status(HttpStatus.OK).body(false);
 	}
 
 	@GetMapping("/logout")

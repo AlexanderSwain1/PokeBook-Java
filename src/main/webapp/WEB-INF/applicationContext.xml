@@ -16,11 +16,6 @@
     http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
 	<context:component-scan base-package="com.revature"></context:component-scan>
-<<<<<<< HEAD
-	<mvc:annotation-driven></mvc:annotation-driven>
-=======
->>>>>>> 97dfda3cfc15c0fab1aa884b38401dabb3bed944
-	
 	<mvc:annotation-driven></mvc:annotation-driven>
 	
 	<tx:annotation-driven/>
@@ -34,7 +29,7 @@
 		<property name="url"
 			value="jdbc:postgresql://localhost:5432/postgres" />
 		<property name="username" value="postgres" />
-		<property name="password" value="PaenutButtre2" />
+		<property name="password" value="Gokuisntgoku25!" />
 	</bean>
 
 	<bean name="sessionFactory"
