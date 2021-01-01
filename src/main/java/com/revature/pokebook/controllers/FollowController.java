@@ -33,27 +33,30 @@ public class FollowController {
 		this.fs = fs;
 	}
 
-	/*
 	@GetMapping
-	public ResponseEntity<List<Follow>> getFollowsByUser(@RequestParam int user_id) 
+	public ResponseEntity<List<Follow>> getFollowsByUser(
+			@RequestParam(name = "user_id", required = false) String user_id, 
+			@RequestParam(name = "pokemon_id", required = false) String pokemon_id) 
 	{
-		List<Follow> list = fs.getByUserId(user_id);
-		if(list==null) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		if (user_id != null)
+		{
+			List<Follow> list = fs.getByUserId(Integer.parseInt(user_id));
+			if(list==null) {
+				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+			}
+			return ResponseEntity.status(HttpStatus.OK).body(list);
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(list);
-		
+		else if (pokemon_id != null)
+		{
+			List<Follow> list = fs.getByPokemonId(Integer.parseInt(pokemon_id));
+			if(list==null) {
+				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+			}
+			return ResponseEntity.status(HttpStatus.OK).body(list);
+		}
+		else
+			return null;//bad request
 	}
-	
-	@GetMapping
-	public ResponseEntity<List<Follow>> getFollowsByPokemon(@RequestParam int pokemon_id) 
-	{
-		List<Follow> list = fs.getByPokemonId(pokemon_id);
-		if(list==null) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-		}
-		return ResponseEntity.status(HttpStatus.OK).body(list);
-	}*/
 
 	@PostMapping
 	public void create(@RequestBody int userId, int pokeId) 

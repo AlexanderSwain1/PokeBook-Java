@@ -33,27 +33,30 @@ public class LikeController
 		this.ls = ls;
 	}
 	
-
-	/*
 	@GetMapping
-	public ResponseEntity<List<Like>> getLikesByUserId(@RequestParam int user_id) 
+	public ResponseEntity<List<Like>> getLikesByUserId(
+			@RequestParam(name = "user_id", required = false) String user_id,
+			@RequestParam(name = "message_id", required = false) String message_id) 
 	{
-		List<Like> list = ls.getLikesByUserId(user_id);
-		if(list==null) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		if (user_id != null)
+		{
+			List<Like> list = ls.getLikesByUserId(Integer.parseInt(user_id));
+			if(list==null) {
+				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+			}
+			return ResponseEntity.status(HttpStatus.OK).body(list);
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(list);
+		else if (message_id != null)
+		{
+			List<Like> list = ls.getLikesByMessageId(Integer.parseInt(message_id));
+			if(list==null) {
+				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+			}
+			return ResponseEntity.status(HttpStatus.OK).body(list);
+		}
+		else
+			return null;//bad request
 	}
-	
-	@GetMapping
-	public ResponseEntity<List<Like>> getLikesByMessageId(@RequestParam int message_id) 
-	{
-		List<Like> list = ls.getLikesByMessageId(message_id);
-		if(list==null) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-		}
-		return ResponseEntity.status(HttpStatus.OK).body(list);
-	}*/
 
 	@PostMapping
 	public void create(@RequestBody int userId, int pokeId) 
