@@ -18,8 +18,16 @@
 	<build>
 		<finalName>PokeBook</finalName>
 	</build>
+	
+	
 
 	<dependencies>
+	
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.14</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api/4.0.1 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

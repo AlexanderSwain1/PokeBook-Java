@@ -26,7 +26,7 @@ public class Message
 	@Column(name = "content")
 	private String content;
 	
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private int authorId;
 	
