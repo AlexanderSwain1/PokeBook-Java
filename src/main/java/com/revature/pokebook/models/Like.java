@@ -13,8 +13,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
 @Table(name = "Likes")
+@Getter @Setter @NoArgsConstructor @EqualsAndHashCode @ToString @AllArgsConstructor
 public class Like 
 {
 
@@ -30,88 +38,10 @@ public class Like
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "message_id")
 	private Message message;
-
-	public Like(int id, User user, Message message) {
-		super();
-		this.id = id;
+	
+	public Like(User user, Message message) 
+	{
 		this.user = user;
 		this.message = message;
 	}
-
-	public Like(User user, Message message) {
-		super();
-		this.user = user;
-		this.message = message;
-	}
-	
-	
-
-	public Like() {
-		super();
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Message getMessage() {
-		return message;
-	}
-
-	public void setMessage(Message message) {
-		this.message = message;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		result = prime * result + ((message == null) ? 0 : message.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Like other = (Like) obj;
-		if (id != other.id)
-			return false;
-		if (message == null) {
-			if (other.message != null)
-				return false;
-		} else if (!message.equals(other.message))
-			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Like [id=" + id + ", user=" + user + ", message=" + message + "]";
-	}
-
-	
 }
