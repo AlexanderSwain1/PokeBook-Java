@@ -14,7 +14,7 @@
 	</welcome-file-list>
 
 	<context-param>
-		<param-name>contextConfiguration</param-name>
+		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/applicationContext.xml</param-value>
 	</context-param>
 
