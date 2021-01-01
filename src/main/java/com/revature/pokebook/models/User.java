@@ -26,7 +26,6 @@ public class User
 	@Column(name="user_first_name")
 	private String firstName;
 	
-	
 	@Column(name="user_last_name")
 	private String lastName;
 	
