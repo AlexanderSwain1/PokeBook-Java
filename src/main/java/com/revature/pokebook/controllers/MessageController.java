@@ -19,7 +19,7 @@ import com.revature.pokebook.models.Message;
 import com.revature.pokebook.services.MessageService;
 
 @RestController
-@CrossOrigin // Connect to EC2 Eventually
+//@CrossOrigin // Connect to EC2 Eventually
 @RequestMapping(value="/messages")
 public class MessageController 
 {

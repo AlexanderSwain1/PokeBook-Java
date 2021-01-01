@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.revature.pokebook.models.Message;
 
 @Repository
-@Transactional
+//@Transactional
 public class MessageDao implements IMessageDao
 {
 	

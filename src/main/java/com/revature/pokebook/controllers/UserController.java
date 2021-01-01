@@ -21,7 +21,7 @@ import com.revature.pokebook.models.User;
 import com.revature.pokebook.services.UserService;
 
 @RestController
-@CrossOrigin // Connect to EC2 Eventually
+//@CrossOrigin // Connect to EC2 Eventually
 @RequestMapping(value="/users")
 public class UserController
 {
