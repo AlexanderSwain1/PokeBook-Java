@@ -21,26 +21,27 @@ public class Follow
 	@Column(name = "follow_id")
 	private int id;
 	
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "user_id")
-	private int userId;
+	private User user;
 	
 	@Column(name = "pokemon_id")
 	private int pokemonId;
 
-
-	public Follow(int id, int userId, int pokemonId) {
+	public Follow(int id, User user, int pokemonId) {
 		super();
 		this.id = id;
-		this.userId = userId;
+		this.user = user;
 		this.pokemonId = pokemonId;
 	}
 
-	public Follow(int userId, int pokemonId) {
+	public Follow(User user, int pokemonId) {
 		super();
-		this.userId = userId;
+		this.user = user;
 		this.pokemonId = pokemonId;
 	}
+	
+	
 
 	public Follow() {
 		super();
@@ -54,12 +55,12 @@ public class Follow
 		this.id = id;
 	}
 
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public int getPokemonId() {
@@ -76,7 +77,7 @@ public class Follow
 		int result = 1;
 		result = prime * result + id;
 		result = prime * result + pokemonId;
-		result = prime * result + userId;
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -93,14 +94,16 @@ public class Follow
 			return false;
 		if (pokemonId != other.pokemonId)
 			return false;
-		if (userId != other.userId)
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Follow [id=" + id + ", userId=" + userId + ", pokemonId=" + pokemonId + "]";
+		return "Follow [id=" + id + ", user=" + user + ", pokemonId=" + pokemonId + "]";
 	}
-
 }

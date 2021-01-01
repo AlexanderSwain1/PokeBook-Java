@@ -9,19 +9,19 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.pokebook.models.Message;
 
-
 @Repository
-public class MessageDao 
+@Transactional
+public class MessageDao implements IMessageDao
 {
 	
 	@Autowired
 	private SessionFactory sf;
 	
-	
+	@Override
 	public List<Message> getMessages()
 	{
 		Session s = sf.getCurrentSession();
@@ -30,12 +30,14 @@ public class MessageDao
 		return s.createQuery(cq).getResultList();
 	}
 	
+	@Override
 	public Message getMessage(int id)
 	{
 		Session s = sf.getCurrentSession();
 		return s.get(Message.class, id);
 	}
 	
+	@Override
 	public List<Message> getMessagesByPokemonID(int pokemon_id)
 	{
 		Session s = sf.getCurrentSession();
@@ -43,18 +45,21 @@ public class MessageDao
 		return list;
 	}
 	
+	@Override
 	public void createMessage(Message message)
 	{
 		Session s = sf.getCurrentSession();
 		s.save(message);
 	}
 	
+	@Override
 	public void updateMessage(Message message)
 	{
 		Session s = sf.getCurrentSession();
 		s.update(message);
 	}
 	
+	@Override
 	public void deleteMessage(Message message)
 	{
 		Session s = sf.getCurrentSession();

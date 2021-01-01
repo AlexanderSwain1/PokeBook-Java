@@ -6,11 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.pokebook.dao.LikeDao;
+import com.revature.pokebook.dao.MessageDao;
+import com.revature.pokebook.dao.UserDao;
 import com.revature.pokebook.models.Like;
 
 @Service
 public class LikeService 
 {
+	private UserDao ud;
+	private MessageDao md;
 	private LikeDao ld;
 	
 	@Autowired
@@ -32,7 +36,7 @@ public class LikeService
 	
 	public void create(int userId, int msgId)
 	{
-		Like l = new Like(userId, msgId);
+		Like l = new Like(ud.getUser(userId), md.getMessage(msgId));
 		ld.createLike(l);
 	}
 	

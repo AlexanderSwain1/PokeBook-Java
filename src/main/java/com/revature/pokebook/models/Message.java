@@ -26,9 +26,9 @@ public class Message
 	@Column(name = "content")
 	private String content;
 	
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name = "user_id")
-	private int authorId;
+	private User author;
 	
 	@Column(name = "pokemon_id")
 	private int pokemonId;
@@ -36,19 +36,19 @@ public class Message
 	@Column(name = "message_post_time")
 	private Timestamp messagePostTime;
 
-	public Message(int id, String content, int authorId, int pokemonId, Timestamp messagePostTime) {
+	public Message(int id, String content, User author, int pokemonId, Timestamp messagePostTime) {
 		super();
 		this.id = id;
 		this.content = content;
-		this.authorId = authorId;
+		this.author = author;
 		this.pokemonId = pokemonId;
 		this.messagePostTime = messagePostTime;
 	}
 
-	public Message(String content, int authorId, int pokemonId, Timestamp messagePostTime) {
+	public Message(String content, User author, int pokemonId, Timestamp messagePostTime) {
 		super();
 		this.content = content;
-		this.authorId = authorId;
+		this.author = author;
 		this.pokemonId = pokemonId;
 		this.messagePostTime = messagePostTime;
 	}
@@ -73,12 +73,12 @@ public class Message
 		this.content = content;
 	}
 
-	public int getAuthorId() {
-		return authorId;
+	public User getAuthor() {
+		return author;
 	}
 
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 
 	public int getPokemonId() {
@@ -101,7 +101,7 @@ public class Message
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + authorId;
+		result = prime * result + ((author == null) ? 0 : author.hashCode());
 		result = prime * result + ((content == null) ? 0 : content.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((messagePostTime == null) ? 0 : messagePostTime.hashCode());
@@ -118,7 +118,10 @@ public class Message
 		if (getClass() != obj.getClass())
 			return false;
 		Message other = (Message) obj;
-		if (authorId != other.authorId)
+		if (author == null) {
+			if (other.author != null)
+				return false;
+		} else if (!author.equals(other.author))
 			return false;
 		if (content == null) {
 			if (other.content != null)
@@ -139,9 +142,7 @@ public class Message
 
 	@Override
 	public String toString() {
-		return "Message [id=" + id + ", content=" + content + ", authorId=" + authorId + ", pokemonId=" + pokemonId
+		return "Message [id=" + id + ", content=" + content + ", author=" + author + ", pokemonId=" + pokemonId
 				+ ", messagePostTime=" + messagePostTime + "]";
 	}
-	
-	
 }
