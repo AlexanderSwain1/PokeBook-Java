@@ -5,16 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.pokebook.dao.IUserDao;
 import com.revature.pokebook.dao.UserDao;
 import com.revature.pokebook.models.User;
 
 @Service
 public class UserService 
 {
-	private UserDao ud;
+	private IUserDao ud;
 	
 	@Autowired
-	public UserService(UserDao ud) 
+	public UserService(IUserDao ud) 
 	{
 		super();
 		this.ud = ud;

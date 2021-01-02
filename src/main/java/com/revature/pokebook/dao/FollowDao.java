@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.revature.pokebook.models.Follow;
 
 @Repository
-//@Transactional
+@Transactional
 public class FollowDao implements IFollowDao
 {
 	@Autowired

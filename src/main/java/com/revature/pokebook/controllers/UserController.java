@@ -55,6 +55,7 @@ public class UserController
 	@PostMapping
 	public void create(@RequestBody User user) 
 	{
+		System.out.println("create user");
 		us.createUser(user);
 	}
 

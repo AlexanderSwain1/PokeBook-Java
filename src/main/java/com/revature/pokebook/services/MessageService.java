@@ -5,16 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.pokebook.dao.IMessageDao;
 import com.revature.pokebook.dao.MessageDao;
 import com.revature.pokebook.models.Message;
 
 @Service
 public class MessageService 
 {
-	private MessageDao md;
+	private IMessageDao md;
 
 	@Autowired
-	public MessageService(MessageDao md) {
+	public MessageService(IMessageDao md) {
 		super();
 		this.md = md;
 	}

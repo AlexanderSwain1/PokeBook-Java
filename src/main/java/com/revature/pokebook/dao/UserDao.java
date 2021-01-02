@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.revature.pokebook.models.User;
 
 @Repository
-//@Transactional
+@Transactional
 public class UserDao implements IUserDao
 {
 	@Autowired

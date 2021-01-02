@@ -6,17 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.pokebook.dao.FollowDao;
+import com.revature.pokebook.dao.IFollowDao;
+import com.revature.pokebook.dao.IUserDao;
 import com.revature.pokebook.dao.UserDao;
 import com.revature.pokebook.models.Follow;
 
 @Service
 public class FollowService 
 {	
-	private UserDao ud;
-	private FollowDao fd;
+	private IUserDao ud;
+	private IFollowDao fd;
 	
 	@Autowired
-	public FollowService(FollowDao fd, UserDao ud) {
+	public FollowService(IFollowDao fd, IUserDao ud) {
 		super();
 		this.fd = fd;
 	}
