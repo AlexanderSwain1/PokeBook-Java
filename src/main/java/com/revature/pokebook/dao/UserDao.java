@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.pokebook.models.Like;
 import com.revature.pokebook.models.User;
 
 @Repository
@@ -32,21 +33,27 @@ public class UserDao implements IUserDao
 	public User getUser(int id)
 	{
 		Session s = sf.getCurrentSession();
-		return s.load(User.class, id);
+		return s.get(User.class, id);
 	}
 	
 	@Override
 	public User getUserByUsername(String username)
 	{
 		Session s = sf.getCurrentSession();
-		return s.load(User.class, username);
+		User result = (User)s.createQuery("FROM User WHERE username = '" + username + "'").uniqueResult();
+		if (result != null)
+			return result;
+		return null;
 	}
 	
 	@Override
 	public User getUserByEmail(String email)
 	{
 		Session s = sf.getCurrentSession();
-		return s.load(User.class, email);
+		List<User> list = s.createQuery("FROM User WHERE email = " + email).list();
+		if (list.size() == 1)
+			return list.get(0);
+		return null;
 	}
 	
 	@Override

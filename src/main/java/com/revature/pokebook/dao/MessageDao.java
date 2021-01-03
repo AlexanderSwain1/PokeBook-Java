@@ -34,7 +34,7 @@ public class MessageDao implements IMessageDao
 	public Message getMessage(int id)
 	{
 		Session s = sf.getCurrentSession();
-		return s.load(Message.class, id);
+		return s.get(Message.class, id);
 	}
 	
 	@Override

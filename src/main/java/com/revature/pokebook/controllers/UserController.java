@@ -2,6 +2,9 @@ package com.revature.pokebook.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,17 +68,27 @@ public class UserController
 	}
 
 	@GetMapping("/login")
-	public ResponseEntity<Boolean> login(@RequestBody User user) 
+	public ResponseEntity<Boolean> login(@RequestBody User user, HttpServletRequest request) 
 	{
 		if (us.loginUser(user))
+		{
+			request.getSession(true);
 			return ResponseEntity.status(HttpStatus.OK).body(true);
+		}
 		else
 			return ResponseEntity.status(HttpStatus.OK).body(false);
 	}
 
 	@GetMapping("/logout")
-	public void logout(@RequestBody User user) 
+	public ResponseEntity<Boolean> logout(HttpServletRequest request) 
 	{
-		System.out.println("logout user not implemented");
+		HttpSession session = request.getSession(false);
+		if (session != null) 
+		{
+		    session.invalidate();
+			return ResponseEntity.status(HttpStatus.OK).body(true);
+		}
+		else
+			return ResponseEntity.status(HttpStatus.OK).body(false);
 	}
 }

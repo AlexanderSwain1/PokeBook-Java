@@ -12,6 +12,8 @@ import com.revature.pokebook.dao.LikeDao;
 import com.revature.pokebook.dao.MessageDao;
 import com.revature.pokebook.dao.UserDao;
 import com.revature.pokebook.models.Like;
+import com.revature.pokebook.models.Message;
+import com.revature.pokebook.models.User;
 
 @Service
 public class LikeService 
@@ -41,7 +43,9 @@ public class LikeService
 	
 	public void create(Like like)
 	{
-		Like l = new Like(ud.getUser(like.getUser().getId()), md.getMessage(like.getMessage().getId()));
+		User user = ud.getUser(like.getUser().getId());
+		Message message = md.getMessage(like.getMessage().getId());
+		Like l = new Like(user, message);
 		ld.createLike(l);
 	}
 	

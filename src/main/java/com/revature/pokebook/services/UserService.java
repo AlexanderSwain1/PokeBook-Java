@@ -56,15 +56,24 @@ public class UserService
 		User user;
 		
 		if (toLogin.getId() != 0)
+		{
+			System.out.println("toLogin.getId()");
 			user = ud.getUser(toLogin.getId());
+		}
 		else if (toLogin.getUsername() != null)
+		{
+			System.out.println("toLogin.getUsername()");
 			user= ud.getUserByUsername(toLogin.getUsername());
+		}
 		else if (toLogin.getEmail() != null)
+		{
+			System.out.println("toLogin.getEmail()");
 			user= ud.getUserByEmail(toLogin.getEmail());
+		}
 		else
 			return false;
 		
-		if (toLogin.getPassword() == user.getPassword())
+		if (toLogin.getPassword().equals(user.getPassword()))
 			return true;
 		else
 			return false;
