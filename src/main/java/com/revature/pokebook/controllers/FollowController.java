@@ -54,7 +54,7 @@ public class FollowController {
 			}
 			return ResponseEntity.status(HttpStatus.OK).body(list);
 		}
-		else
+		else // get all not implemented
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
 

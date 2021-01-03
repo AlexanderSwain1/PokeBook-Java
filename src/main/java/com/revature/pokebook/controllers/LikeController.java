@@ -54,8 +54,8 @@ public class LikeController
 			}
 			return ResponseEntity.status(HttpStatus.OK).body(list);
 		}
-		else
-			return null;//bad request
+		else // get all not implemented
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
 
 	@PostMapping
