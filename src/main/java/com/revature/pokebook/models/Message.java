@@ -34,7 +34,7 @@ public class Message
 	@Column(name = "content")
 	private String content;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	@JoinColumn(name = "user_id")
 	private User author;
 	
