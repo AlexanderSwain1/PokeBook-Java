@@ -21,7 +21,7 @@ import com.revature.pokebook.models.Like;
 import com.revature.pokebook.services.LikeService;
 
 @RestController
-//@CrossOrigin // Connect to EC2 Eventually
+@CrossOrigin // Connect to EC2 Eventually
 @RequestMapping(value="/likes")
 public class LikeController 
 {
