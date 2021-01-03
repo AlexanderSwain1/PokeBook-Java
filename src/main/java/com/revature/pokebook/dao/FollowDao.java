@@ -21,7 +21,7 @@ public class FollowDao implements IFollowDao
 	public List<Follow> getByUserId(int userId) 
 	{
 		Session s = sf.getCurrentSession();
-		List<Follow> list = s.createQuery("FROM Follows WHERE user_id = " + userId).list();
+		List<Follow> list = s.createQuery("FROM Follow WHERE user_id = " + userId).list();
 		return list;
 	}
 	
@@ -30,7 +30,7 @@ public class FollowDao implements IFollowDao
 	{
 
 		Session s = sf.getCurrentSession();
-		List<Follow> list = s.createQuery("FROM Follows WHERE pokemon_id = " + pokemonId).list();
+		List<Follow> list = s.createQuery("FROM Follow WHERE pokemon_id = " + pokemonId).list();
 		return list;
 
 	}

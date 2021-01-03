@@ -55,13 +55,13 @@ public class FollowController {
 			return ResponseEntity.status(HttpStatus.OK).body(list);
 		}
 		else
-			return null;//bad request
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
 
 	@PostMapping
-	public void create(@RequestBody int userId, int pokeId) 
+	public void create(@RequestBody Follow follow) 
 	{
-		fs.createFollow(userId, pokeId);
+		fs.createFollow(follow);
 	}
 
 	@DeleteMapping

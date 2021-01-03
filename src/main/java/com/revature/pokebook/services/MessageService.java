@@ -6,18 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.pokebook.dao.IMessageDao;
+import com.revature.pokebook.dao.IUserDao;
 import com.revature.pokebook.dao.MessageDao;
 import com.revature.pokebook.models.Message;
 
 @Service
 public class MessageService 
 {
+	private IUserDao ud;
 	private IMessageDao md;
 
 	@Autowired
-	public MessageService(IMessageDao md) {
+	public MessageService(IMessageDao md, IUserDao ud) {
 		super();
 		this.md = md;
+		this.ud = ud;
 	}
 	
 	public List<Message> getMessages()
@@ -37,6 +40,7 @@ public class MessageService
 	
 	public void createMessage(Message message)
 	{
+		message.setAuthor(ud.getUser(message.getAuthor().getId()));
 		md.createMessage(message);
 	}
 	

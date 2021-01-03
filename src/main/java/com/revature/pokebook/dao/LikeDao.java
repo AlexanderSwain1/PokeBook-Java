@@ -32,7 +32,7 @@ public class LikeDao implements ILikeDao
 	public List<Like> getLikesByUserId(int userId)
 	{
 		Session s = sf.getCurrentSession();
-		List<Like> list = s.createQuery("FROM Likes WHERE user_id = " + userId).list();
+		List<Like> list = s.createQuery("FROM Like WHERE user_id = " + userId).list();
 		return list;
 	}
 	
@@ -40,7 +40,7 @@ public class LikeDao implements ILikeDao
 	public List<Like> getLikesByMessageId(int messageId)
 	{
 		Session s = sf.getCurrentSession();
-		List<Like> list = s.createQuery("FROM Likes WHERE message_id = " + messageId).list();
+		List<Like> list = s.createQuery("FROM Like WHERE message_id = " + messageId).list();
 		return list;
 	}
 	

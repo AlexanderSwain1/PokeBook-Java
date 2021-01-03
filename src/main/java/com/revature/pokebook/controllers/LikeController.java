@@ -59,9 +59,9 @@ public class LikeController
 	}
 
 	@PostMapping
-	public void create(@RequestBody int userId, int pokeId) 
+	public void create(@RequestBody Like like) 
 	{
-		//ls.createFollow(userId, pokeId);
+		ls.create(like);
 	}
 
 	@DeleteMapping

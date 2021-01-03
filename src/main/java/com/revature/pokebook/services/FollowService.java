@@ -21,6 +21,7 @@ public class FollowService
 	public FollowService(IFollowDao fd, IUserDao ud) {
 		super();
 		this.fd = fd;
+		this.ud = ud;
 	}
 	
 
@@ -35,10 +36,10 @@ public class FollowService
 		return fd.getByPokemonId(pokemonId);
 	}
 	
-	public void createFollow(int userId, int pokeId)
+	public void createFollow(Follow follow)
 	{
-		Follow f = new Follow(ud.getUser(userId), pokeId);
-		fd.createFollow(f);
+		follow.setUser(ud.getUser(follow.getUser().getId()));
+		fd.createFollow(follow);
 	}
 	
 	public void deleteFollow(int id)

@@ -21,9 +21,11 @@ public class LikeService
 	private ILikeDao ld;
 	
 	@Autowired
-	public LikeService(ILikeDao ld) {
+	public LikeService(ILikeDao ld, IUserDao ud, IMessageDao md) {
 		super();
 		this.ld = ld;
+		this.ud = ud;
+		this.md = md;
 	}
 	
 	
@@ -37,9 +39,9 @@ public class LikeService
 		return ld.getLikesByUserId(messageId);
 	}
 	
-	public void create(int userId, int msgId)
+	public void create(Like like)
 	{
-		Like l = new Like(ud.getUser(userId), md.getMessage(msgId));
+		Like l = new Like(ud.getUser(like.getUser().getId()), md.getMessage(like.getMessage().getId()));
 		ld.createLike(l);
 	}
 	

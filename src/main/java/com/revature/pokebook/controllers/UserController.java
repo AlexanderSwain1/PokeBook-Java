@@ -36,7 +36,7 @@ public class UserController
 	}
 	
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@GetMapping
 	public List<User> getUsers() 
 	{
 		return us.getUsers();
@@ -46,7 +46,7 @@ public class UserController
 	public ResponseEntity<User> getUser(@PathVariable("id") int id) 
 	{
 		User result = us.getUser(id);
-		if (result == null)
+		if (result != null)
 			return ResponseEntity.status(HttpStatus.OK).body(result);
 		else
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
@@ -55,7 +55,6 @@ public class UserController
 	@PostMapping
 	public void create(@RequestBody User user) 
 	{
-		System.out.println("create user");
 		us.createUser(user);
 	}
 

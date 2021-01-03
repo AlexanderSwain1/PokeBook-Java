@@ -32,21 +32,21 @@ public class UserDao implements IUserDao
 	public User getUser(int id)
 	{
 		Session s = sf.getCurrentSession();
-		return s.get(User.class, id);
+		return s.load(User.class, id);
 	}
 	
 	@Override
 	public User getUserByUsername(String username)
 	{
 		Session s = sf.getCurrentSession();
-		return s.get(User.class, username);
+		return s.load(User.class, username);
 	}
 	
 	@Override
 	public User getUserByEmail(String email)
 	{
 		Session s = sf.getCurrentSession();
-		return s.get(User.class, email);
+		return s.load(User.class, email);
 	}
 	
 	@Override
