@@ -21,7 +21,7 @@ import com.revature.pokebook.models.Follow;
 import com.revature.pokebook.services.FollowService;
 
 @RestController
-//@CrossOrigin // Connect to EC2 Eventually
+@CrossOrigin // Connect to EC2 Eventually
 @RequestMapping(value="/follows")
 public class FollowController {
 
