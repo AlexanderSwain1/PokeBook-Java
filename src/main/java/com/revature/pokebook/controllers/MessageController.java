@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.pokebook.models.Follow;
 import com.revature.pokebook.models.Message;
 import com.revature.pokebook.services.MessageService;
 
@@ -38,9 +40,20 @@ public class MessageController
 	}
 	
 	@GetMapping
-	public List<Message> getMessages() 
+	public ResponseEntity<List<Message>> getMessages(
+			@RequestParam(name = "pokemon_id", required = false) String pokemon_id) 
 	{
-		return ms.getMessages();
+		if (pokemon_id != null)
+		{
+			List<Message> list = ms.getMessagesByPokemonID(Integer.parseInt(pokemon_id));
+			if(list==null) 
+			{
+				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+			}
+			return ResponseEntity.status(HttpStatus.OK).body(list);
+		}
+		else // get all not implemented
+			return ResponseEntity.status(HttpStatus.OK).body(ms.getMessages());
 	}
 
 	@GetMapping("/{id}")

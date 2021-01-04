@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.pokebook.models.Follow;
 import com.revature.pokebook.models.Message;
 
 @Repository
@@ -41,7 +42,9 @@ public class MessageDao implements IMessageDao
 	public List<Message> getMessagesByPokemonID(int pokemon_id)
 	{
 		Session s = sf.getCurrentSession();
-		List<Message> list = s.createQuery("FROM Messages WHERE pokemon_id = " + pokemon_id).list();
+		System.out.println(pokemon_id);
+		List<Message> list = s.createQuery("FROM Message WHERE pokemonId = " + pokemon_id).list();
+		System.out.println(list);
 		return list;
 	}
 	
