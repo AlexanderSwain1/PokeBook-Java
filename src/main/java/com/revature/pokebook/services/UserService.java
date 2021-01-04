@@ -54,6 +54,7 @@ public class UserService
 	public User loginUser(User toLogin)
 	{
 		User user;
+		System.out.println("Login Service");
 		
 		if (toLogin.getId() != 0)
 		{

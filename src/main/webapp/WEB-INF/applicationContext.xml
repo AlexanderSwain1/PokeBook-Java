@@ -31,7 +31,9 @@
 		<property name="password" value="PaenutButtre2"/>
 	</bean>
 
-	<!-- EC2 DNS:        ec2-3-19-211-125.us-east-2.compute.amazonaws.com      -->
+	<!-- John's RDS:    javafs201130.c5srn7vdmkt3.us-east-2.rds.amazonaws.com  -->
+	<!-- Gabriel's RDS:	database-1.cqaqrfkcr43i.us-east-2.rds.amazonaws.com -->
+	<!-- EC2 DNS:       ec2-3-19-211-125.us-east-2.compute.amazonaws.com   -->
 
 	<bean name="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
