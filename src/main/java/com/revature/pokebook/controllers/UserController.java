@@ -46,13 +46,25 @@ public class UserController
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<User> getUser(@PathVariable("id") int id) 
+	public ResponseEntity<User> getUser(@PathVariable("id") int id, HttpServletRequest request) 
 	{
-		User result = us.getUser(id);
-		if (result != null)
-			return ResponseEntity.status(HttpStatus.OK).body(result);
+		System.out.println("id: " + id);
+		if (id == 0)
+		{
+			HttpSession session = request.getSession(false);
+			if (session != null) 
+				return ResponseEntity.status(HttpStatus.OK).body((User)session.getAttribute("user"));
+			else
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		}
 		else
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
+		{
+			User result = us.getUser(id);
+			if (result != null)
+				return ResponseEntity.status(HttpStatus.OK).body(result);
+			else
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
+		}
 	}
 
 	@PostMapping
@@ -70,13 +82,15 @@ public class UserController
 	@GetMapping("/login")
 	public ResponseEntity<Boolean> login(@RequestBody User user, HttpServletRequest request) 
 	{
-		if (us.loginUser(user))
+		user = us.loginUser(user);
+		if (user != null)
 		{
-			request.getSession(true);
+			HttpSession session = request.getSession(true);
+			session.setAttribute("user", user);
 			return ResponseEntity.status(HttpStatus.OK).body(true);
 		}
 		else
-			return ResponseEntity.status(HttpStatus.OK).body(false);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false);
 	}
 
 	@GetMapping("/logout")

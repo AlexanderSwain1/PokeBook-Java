@@ -51,7 +51,7 @@ public class UserService
 		ud.updateUser(user);
 	}
 	
-	public boolean loginUser(User toLogin)
+	public User loginUser(User toLogin)
 	{
 		User user;
 		
@@ -71,12 +71,13 @@ public class UserService
 			user= ud.getUserByEmail(toLogin.getEmail());
 		}
 		else
-			return false;
+			return null;
 		
+		System.out.println("toLoginPsssword: " + toLogin.getPassword() + "; user: " + user.getPassword());
 		if (toLogin.getPassword().equals(user.getPassword()))
-			return true;
+			return user;
 		else
-			return false;
+			return null;
 	}
 	
 	public void logoutUser(User user)
