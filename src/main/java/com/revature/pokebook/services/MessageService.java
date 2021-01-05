@@ -1,5 +1,6 @@
 package com.revature.pokebook.services;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,10 @@ public class MessageService
 	
 	public List<Message> getMessagesByPokemonID(int pokemon_id)
 	{
-		return md.getMessagesByPokemonID(pokemon_id);
+		List<Message> list = md.getMessagesByPokemonID(pokemon_id);
+
+		
+		return list;
 	}
 	
 	public void createMessage(Message message)

@@ -24,7 +24,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "Messages")
 @Getter @Setter @NoArgsConstructor @EqualsAndHashCode @ToString @AllArgsConstructor
-public class Message 
+public class Message implements Comparable<Message>
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,5 +43,12 @@ public class Message
 	
 	@Column(name = "message_post_time")
 	private Timestamp messagePostTime;
-
+	
+	@Override
+	public int compareTo(Message m) {
+		if (getMessagePostTime() == null || m.getMessagePostTime() == null) {
+		return 0;
+	}
+		return getMessagePostTime().compareTo(m.getMessagePostTime());
+	}
 }
