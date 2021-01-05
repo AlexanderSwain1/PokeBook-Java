@@ -1,6 +1,7 @@
 package com.revature.pokebook.controllers;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.pokebook.models.Follow;
 import com.revature.pokebook.models.Message;
+import com.revature.pokebook.services.FollowService;
 import com.revature.pokebook.services.MessageService;
 
 @RestController
@@ -31,16 +33,20 @@ public class MessageController
 {
 	
 	private MessageService ms;
+	private FollowService fs;
 	
 	@Autowired
-	public MessageController(MessageService ms) 
+	public MessageController(MessageService ms, FollowService fs) 
 	{
 		super();
+		this.fs = fs;
 		this.ms = ms;
 	}
 	
+	
+	
 	@GetMapping
-	public ResponseEntity<List<Message>> getMessages(
+	public ResponseEntity<List<Message>> getMessages( //Pokemon Id
 			@RequestParam(name = "pokemon_id", required = false) String pokemon_id) 
 	{
 		if (pokemon_id != null)
@@ -52,19 +58,29 @@ public class MessageController
 			}
 			return ResponseEntity.status(HttpStatus.OK).body(list);
 		}
-		else // get all not implemented
+		else
 			return ResponseEntity.status(HttpStatus.OK).body(ms.getMessages());
 	}
 
+	//Used for Populating Livefeed
 	@GetMapping("/{id}")
-	public ResponseEntity<Message> getMessage(@PathVariable("id") int id) 
+	public ResponseEntity<List<Message>> getMessage(@PathVariable("id") int id) //Curr User Id
 	{
 		
-		Message result = ms.getMessage(id);
-		if (result != null)
-			return ResponseEntity.status(HttpStatus.OK).body(result);
-		else
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
+		List<Follow> followList = fs.getByUserId(id);
+		List<Message> messageList = new ArrayList<Message>();
+		
+		if(followList == null)
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(messageList);
+			
+		for(Follow f:followList) { //all follows are for current user
+			int currPoke = f.getPokemonId();
+			List<Message> currList = ms.getMessagesByPokemonID(currPoke);
+			messageList.addAll(currList);
+		}
+		
+		return ResponseEntity.status(HttpStatus.OK).body(messageList); //Even if its empty, just display nothing
+
 	}
 
 	@PostMapping

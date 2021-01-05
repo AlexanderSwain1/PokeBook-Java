@@ -57,7 +57,7 @@ public class FollowController {
 		else // get all not implemented
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
-
+	
 	@PostMapping
 	public void create(@RequestBody Follow follow) 
 	{
