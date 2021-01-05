@@ -62,6 +62,7 @@ public class MessageController
 	}
 
 	//Used for Populating Livefeed
+	@CrossOrigin
 	@GetMapping("/{id}")
 	public ResponseEntity<List<Message>> getMessage(@PathVariable("id") int id) //Curr User Id
 	{
