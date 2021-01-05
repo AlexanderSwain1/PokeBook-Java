@@ -2,6 +2,7 @@ package com.revature.pokebook.controllers;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,6 @@ public class MessageController
 		this.ms = ms;
 	}
 	
-	
-	
 	@GetMapping
 	public ResponseEntity<List<Message>> getMessages( //Pokemon Id
 			@RequestParam(name = "pokemon_id", required = false) String pokemon_id) 
@@ -68,6 +67,7 @@ public class MessageController
 	{
 		
 		List<Follow> followList = fs.getByUserId(id);
+		System.out.println("FollowList: " + followList);
 		List<Message> messageList = new ArrayList<Message>();
 		
 		if(followList == null)
@@ -77,7 +77,12 @@ public class MessageController
 			int currPoke = f.getPokemonId();
 			List<Message> currList = ms.getMessagesByPokemonID(currPoke);
 			messageList.addAll(currList);
+			System.out.println("MessageList in this iteration: " + messageList);
 		}
+		
+		System.out.println("Before: " + messageList);
+		messageList.sort(Comparator.comparing(Message::getMessagePostTime));
+		System.out.println("After: " + messageList);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(messageList); //Even if its empty, just display nothing
 
