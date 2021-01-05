@@ -50,7 +50,7 @@ public class UserDao implements IUserDao
 	public User getUserByEmail(String email)
 	{
 		Session s = sf.getCurrentSession();
-		List<User> list = s.createQuery("FROM User WHERE email = " + email).list();
+		List<User> list = s.createQuery("FROM User WHERE email = '" + email + "'").list();
 		if (list.size() == 1)
 			return list.get(0);
 		return null;

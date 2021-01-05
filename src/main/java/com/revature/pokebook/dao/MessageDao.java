@@ -43,7 +43,7 @@ public class MessageDao implements IMessageDao
 	{
 		Session s = sf.getCurrentSession();
 		System.out.println(pokemon_id);
-		List<Message> list = s.createQuery("FROM Message WHERE pokemonId = " + pokemon_id).list();
+		List<Message> list = s.createQuery("FROM Message WHERE pokemon_id = " + pokemon_id).list();
 		System.out.println(list);
 		return list;
 	}

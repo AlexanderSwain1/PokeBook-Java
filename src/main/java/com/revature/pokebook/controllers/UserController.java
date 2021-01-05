@@ -53,9 +53,15 @@ public class UserController
 		{
 			HttpSession session = request.getSession(false);
 			if (session != null) 
+			{
+				System.out.println("Session Exists");
 				return ResponseEntity.status(HttpStatus.OK).body((User)session.getAttribute("user"));
+			}
 			else
+			{
+				System.out.println("Session doesn't exist");
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			}
 		}
 		else
 		{
@@ -79,8 +85,7 @@ public class UserController
 		us.updateUser(user);
 	}
 
-	@CrossOrigin
-	@GetMapping("/login")
+	@PutMapping("/login")
 	public ResponseEntity<Boolean> login(@RequestBody User user, HttpServletRequest request) 
 	{
 		
@@ -96,7 +101,7 @@ public class UserController
 	}
 
 	@CrossOrigin
-	@GetMapping("/logout")
+	@PutMapping("/logout")
 	public ResponseEntity<Boolean> logout(HttpServletRequest request) 
 	{
 		HttpSession session = request.getSession(false);
