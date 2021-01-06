@@ -8,11 +8,13 @@ import com.revature.pokebook.models.Follow;
 
 public interface IFollowDao 
 {
+	public Follow getFollow(Follow follow);
+	
 	public List<Follow> getByUserId(int userId);
 	
 	public List<Follow> getByPokemonId(int pokemonId);
 	
-	public void createFollow(Follow follow);
+	public Follow createFollow(Follow follow);
 	
 	public void deleteFollow(Follow follow);
 }

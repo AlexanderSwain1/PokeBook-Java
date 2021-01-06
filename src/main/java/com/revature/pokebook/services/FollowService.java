@@ -24,6 +24,10 @@ public class FollowService
 		this.ud = ud;
 	}
 	
+	public Follow getFollow(Follow follow) {
+		return fd.getFollow(follow);
+	}
+	
 
 	public List<Follow> getByUserId(int followerId)
 	{
@@ -36,17 +40,16 @@ public class FollowService
 		return fd.getByPokemonId(pokemonId);
 	}
 	
-	public void createFollow(Follow follow)
+	public Follow createFollow(Follow follow)
 	{
 		follow.setUser(ud.getUser(follow.getUser().getId()));
-		fd.createFollow(follow);
+		Follow f = fd.createFollow(follow);
+		return f;
 	}
 	
-	public void deleteFollow(int id)
+	public void deleteFollow(Follow follow)
 	{
-		Follow f = new Follow();
-		f.setId(id);
-		fd.deleteFollow(f);
+		fd.deleteFollow(follow);
 	}
 	
 }
