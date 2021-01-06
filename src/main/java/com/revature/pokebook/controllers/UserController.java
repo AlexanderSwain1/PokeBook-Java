@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.revature.pokebook.models.User;
 import com.revature.pokebook.services.UserService;
 
+@SessionAttributes("account")
 @RestController
 @CrossOrigin // Connect to EC2 Eventually
 @RequestMapping(value="/users")
@@ -80,9 +82,20 @@ public class UserController
 	}
 
 	@PutMapping
-	public void update(@RequestBody User user) 
+	public ResponseEntity<Boolean> update(@RequestBody User user, HttpServletRequest request) 
 	{
-		us.updateUser(user);
+		HttpSession session = request.getSession(false);
+		if (session != null) 
+		{
+			user.setId(((User)session.getAttribute("user")).getId());
+			us.updateUser(user);
+			return ResponseEntity.status(HttpStatus.OK).body(true);
+		}
+		else
+		{
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false);
+		}
+
 	}
 
 	@PutMapping("/login")
