@@ -61,9 +61,9 @@ public class FollowController {
 	public ResponseEntity<Follow> getFollow(@RequestBody Follow follow){
 		Follow f = fs.getFollow(follow);
 		if(f != null)
-			return ResponseEntity.status(200).body(follow);
+			return ResponseEntity.status(200).body(f);
 		else
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(follow);
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(f);
 	}
 	
 	@PostMapping
@@ -77,14 +77,10 @@ public class FollowController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity delete(@PathVariable("id")int id)
 	{
-		System.out.println("Delete Method Backend");
+		System.out.println("Id I got" + id);
 		Follow f = new Follow();
 		f.setId(id);
 		fs.deleteFollow(f);
 		return ResponseEntity.status(202).build(); //Accepted
 	}
-
-
-	
-
 }
