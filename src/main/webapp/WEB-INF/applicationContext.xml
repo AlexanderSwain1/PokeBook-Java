@@ -26,9 +26,9 @@
 		<property name="driverClassName"
 			value="org.postgresql.Driver" />
 		<property name="url"
-			value="jdbc:postgresql://javafs201130.c5srn7vdmkt3.us-east-2.rds.amazonaws.com:5432/postgres" />
+			value="jdbc:postgresql://javafs201130.cuiw9ui4fkdj.us-east-2.rds.amazonaws.com:5432/postgres" />
 		<property name="username" value="postgres" />
-		<property name="password" value="PaenutButtre2"/>
+		<property name="password" value="Gokuisntgoku25!"/>
 	</bean>
 
 	<!-- John's RDS:    javafs201130.c5srn7vdmkt3.us-east-2.rds.amazonaws.com  -->
