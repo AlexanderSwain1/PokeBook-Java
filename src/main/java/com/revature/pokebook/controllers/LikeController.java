@@ -68,11 +68,14 @@ public class LikeController
 	@DeleteMapping("/{id}")
 	public ResponseEntity delete(@PathVariable("id") int id) 
 	{
-		System.out.println("Delete Method Backend");
+		//System.out.println("Delete controller, Id I got: " + id);
 		Like like = new Like();
 		like.setId(id);
-		ls.delete(like);
-		return ResponseEntity.status(202).build(); //Accepted
+		if(ls.delete(like)) {
+			return ResponseEntity.status(202).build(); //Accepted
+		}
+		
+		return ResponseEntity.status(400).build();//Bad Request
 	}
 
 }

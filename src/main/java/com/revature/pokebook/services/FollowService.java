@@ -24,19 +24,27 @@ public class FollowService
 		this.ud = ud;
 	}
 	
+	public FollowService() {
+		super();
+	}
+	
 	public Follow getFollow(Follow follow) {
 		return fd.getFollow(follow);
 	}
-	
 
 	public List<Follow> getByUserId(int followerId)
 	{
+		if(followerId <= 0) {
+			return null;
+		}
 		return fd.getByUserId(followerId);
-		
 	}
 	
 	public List<Follow> getByPokemonId(int pokemonId)
 	{
+		if(pokemonId <= 0 || pokemonId > 898) {
+			return null;
+		}
 		return fd.getByPokemonId(pokemonId);
 	}
 	
@@ -47,9 +55,17 @@ public class FollowService
 		return f;
 	}
 	
-	public void deleteFollow(Follow follow)
+	public boolean deleteFollow(Follow follow)
 	{
+		if(follow.getId() <= 0) {
+			return false;
+		} else if(follow.getPokemonId() <= 0 || follow.getPokemonId() > 898) {
+			return false;
+		} else if(follow.getUser().getId() <= 0) {
+			return false;
+		}
 		fd.deleteFollow(follow);
+		return true;
 	}
 	
 }

@@ -77,10 +77,20 @@ public class FollowController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity delete(@PathVariable("id")int id)
 	{
-		System.out.println("Id I got" + id);
 		Follow f = new Follow();
 		f.setId(id);
-		fs.deleteFollow(f);
-		return ResponseEntity.status(202).build(); //Accepted
+		
+		if(fs.deleteFollow(f)) {
+			return ResponseEntity.status(202).build();//Accepted
+		}
+		
+		return ResponseEntity.status(400).build();//Bad Request
 	}
 }
+
+
+
+
+
+
+
