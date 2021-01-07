@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.pokebook.models.Follow;
 import com.revature.pokebook.models.Like;
 import com.revature.pokebook.services.LikeService;
 
@@ -64,10 +65,17 @@ public class LikeController
 		ls.create(like);
 	}
 
-	@DeleteMapping
-	public void delete(@RequestBody int id) 
+	@DeleteMapping("/{id}")
+	public ResponseEntity delete(@PathVariable("id") int id) 
 	{
-		//ls.deleteFollow(id);
+		//System.out.println("Delete controller, Id I got: " + id);
+		Like like = new Like();
+		like.setId(id);
+		if(ls.delete(like)) {
+			return ResponseEntity.status(202).build(); //Accepted
+		}
+		
+		return ResponseEntity.status(400).build();//Bad Request
 	}
 
 }

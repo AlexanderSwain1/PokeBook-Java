@@ -24,6 +24,10 @@ public class MessageService
 		this.ud = ud;
 	}
 	
+	public MessageService() {
+		super();
+	}
+	
 	public List<Message> getMessages()
 	{
 		return md.getMessages();
@@ -31,14 +35,19 @@ public class MessageService
 	
 	public Message getMessage(int id)
 	{
+		if(id <= 0) {
+			return null;
+		}
 		return md.getMessage(id);
 	}
 	
 	public List<Message> getMessagesByPokemonID(int pokemon_id)
 	{
-		List<Message> list = md.getMessagesByPokemonID(pokemon_id);
-
+		if(pokemon_id <= 0 || pokemon_id > 898) {
+			return null;
+		}
 		
+		List<Message> list = md.getMessagesByPokemonID(pokemon_id);
 		return list;
 	}
 	
@@ -48,13 +57,25 @@ public class MessageService
 		md.createMessage(message);
 	}
 	
-	public void updateMessage(Message message)
+	public boolean updateMessage(Message message)
 	{
+		if(message.getId() <= 0) {
+			return false;
+		} else if(message.getPokemonId() <= 0 || message.getPokemonId() > 898) {
+			return false;
+		}
 		md.updateMessage(message);
+		return true;
 	}
 	
-	public void deleteMessage(Message message)
+	public boolean deleteMessage(Message message)
 	{
+		if(message.getId() <= 0) {
+			return false;
+		} else if(message.getPokemonId() <= 0 || message.getPokemonId() > 898) {
+			return false;
+		}
 		md.deleteMessage(message);
+		return true;
 	}
 }

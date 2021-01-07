@@ -21,6 +21,10 @@ public class UserService
 		this.ud = ud;
 	}
 	
+	public UserService() {
+		super();
+	}
+	
 	public List<User> getUsers()
 	{
 		return ud.getUsers();
@@ -28,16 +32,25 @@ public class UserService
 	
 	public User getUser(int id)
 	{
+		if(id < 0) {
+			return null;
+		}
 		return ud.getUser(id);
 	}
 	
 	public User getUserByUsername(String username)
 	{
+		if(username == "") {
+			return null;
+		}
 		return ud.getUserByUsername(username);
 	}
 	
 	public User getUserByEmail(String email)
 	{
+		if(email == "") {
+			return null;
+		}
 		return ud.getUserByEmail(email);
 	}
 	
@@ -46,9 +59,13 @@ public class UserService
 		ud.createUser(user);
 	}
 	
-	public void updateUser(User user)
+	public boolean updateUser(User user)
 	{
+		if(user.getId() <= 0) {
+			return false;
+		}
 		ud.updateUser(user);
+		return true;
 	}
 	
 	public User loginUser(User toLogin)
@@ -84,5 +101,7 @@ public class UserService
 	public void logoutUser(User user)
 	{
 		//Not Implemented
+		//I dont think logout needs a backend function, as we can just delete 
+		//the user information held in the front end and reroute the user to login
 	}
 }

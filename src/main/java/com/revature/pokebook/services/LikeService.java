@@ -30,29 +30,45 @@ public class LikeService
 		this.md = md;
 	}
 	
+	public LikeService() {
+		super();
+	}
 	
 	public List<Like> getLikesByUserId(int userId)
 	{
+		if(userId <= 0) {
+			return null;
+		}
 		return ld.getLikesByUserId(userId);
 	}
 	
 	public List<Like> getLikesByMessageId(int messageId)
 	{
+		if(messageId <= 0) {
+			return null;
+		}
 		return ld.getLikesByUserId(messageId);
 	}
 	
-	public void create(Like like)
+	public boolean create(Like like)
 	{
 		User user = ud.getUser(like.getUser().getId());
 		Message message = md.getMessage(like.getMessage().getId());
 		Like l = new Like(user, message);
 		ld.createLike(l);
+		return true;
 	}
 	
-	public void delete(int id)
+	public boolean delete(Like like)
 	{
-		Like l = new Like();
-		l.setId(id);
-		ld.deleteLike(l);
+		if(like.getId() <= 0) {
+			return false;
+		} else if(like.getMessage().getId() <= 0) {
+			return false;
+		} else if(like.getUser().getId() <= 0) {
+			return false;
+		}
+		ld.deleteLike(like);
+		return true;
 	}
 }

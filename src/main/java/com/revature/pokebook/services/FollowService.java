@@ -24,29 +24,48 @@ public class FollowService
 		this.ud = ud;
 	}
 	
+	public FollowService() {
+		super();
+	}
+	
+	public Follow getFollow(Follow follow) {
+		return fd.getFollow(follow);
+	}
 
 	public List<Follow> getByUserId(int followerId)
 	{
+		if(followerId <= 0) {
+			return null;
+		}
 		return fd.getByUserId(followerId);
-		
 	}
 	
 	public List<Follow> getByPokemonId(int pokemonId)
 	{
+		if(pokemonId <= 0 || pokemonId > 898) {
+			return null;
+		}
 		return fd.getByPokemonId(pokemonId);
 	}
 	
-	public void createFollow(Follow follow)
+	public Follow createFollow(Follow follow)
 	{
 		follow.setUser(ud.getUser(follow.getUser().getId()));
-		fd.createFollow(follow);
+		Follow f = fd.createFollow(follow);
+		return f;
 	}
 	
-	public void deleteFollow(int id)
+	public boolean deleteFollow(Follow follow)
 	{
-		Follow f = new Follow();
-		f.setId(id);
-		fd.deleteFollow(f);
+		if(follow.getId() <= 0) {
+			return false;
+		} else if(follow.getPokemonId() <= 0 || follow.getPokemonId() > 898) {
+			return false;
+		} else if(follow.getUser().getId() <= 0) {
+			return false;
+		}
+		fd.deleteFollow(follow);
+		return true;
 	}
 	
 }

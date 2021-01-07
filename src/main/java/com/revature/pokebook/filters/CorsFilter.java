@@ -39,7 +39,7 @@ public class CorsFilter implements Filter
 		
 		res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200"); // null for Allow all origins
 		
-		res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
+		res.setHeader("Access-Control-Allow-Methods", "DELETE, GET, POST, PUT, PATCH, OPTIONS, HEAD");
 		// Allow specific HTTP Verbs
 		
 		res.setHeader("Access-Control-Allow-Headers", "Origin, Accept, X-Requested-With, Content-Type,"

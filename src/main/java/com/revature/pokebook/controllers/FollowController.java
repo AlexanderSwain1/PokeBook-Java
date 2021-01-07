@@ -5,16 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.pokebook.models.Follow;
@@ -32,7 +31,7 @@ public class FollowController {
 		super();
 		this.fs = fs;
 	}
-
+	
 	@GetMapping
 	public ResponseEntity<List<Follow>> getFollowsByUser(
 			@RequestParam(name = "user_id", required = false) String user_id, 
@@ -58,19 +57,40 @@ public class FollowController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
 	
-	@PostMapping
-	public void create(@RequestBody Follow follow) 
-	{
-		fs.createFollow(follow);
+	@PatchMapping
+	public ResponseEntity<Follow> getFollow(@RequestBody Follow follow){
+		Follow f = fs.getFollow(follow);
+		if(f != null)
+			return ResponseEntity.status(200).body(f);
+		else
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(f);
 	}
-
-	@DeleteMapping
-	public void delete(@RequestBody int id) 
-	{
-		fs.deleteFollow(id);
-	}
-
-
 	
+	@PostMapping
+	public ResponseEntity<Follow> create(@RequestBody Follow follow) 
+	{
+		System.out.println("Follow Controller create: " + follow.getPokemonId());
+		Follow f = fs.createFollow(follow);
+		return ResponseEntity.status(201).body(f); //Created
+	}
 
+	@DeleteMapping("/{id}")
+	public ResponseEntity delete(@PathVariable("id")int id)
+	{
+		Follow f = new Follow();
+		f.setId(id);
+		
+		if(fs.deleteFollow(f)) {
+			return ResponseEntity.status(202).build();//Accepted
+		}
+		
+		return ResponseEntity.status(400).build();//Bad Request
+	}
 }
+
+
+
+
+
+
+
