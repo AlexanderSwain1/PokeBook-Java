@@ -9,7 +9,6 @@
 	<name>PokeBook</name>
 	<description>Pokébook is the 'Facebook of Pokémon' where users can find a feed for their favorite Pokémon.</description>
 
-
 	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -19,10 +18,7 @@
 		<finalName>PokeBook</finalName>
 	</build>
 
-
-
 	<dependencies>
-
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -36,19 +32,12 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.2.14</version>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.26.Final</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>junit</groupId>
