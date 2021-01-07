@@ -20,6 +20,10 @@ public class UserDao implements IUserDao
 	@Autowired
 	private SessionFactory sf;
 	
+	public UserDao() {
+		super();
+	}
+	
 	@Override
 	public List<User> getUsers()
 	{
@@ -57,16 +61,18 @@ public class UserDao implements IUserDao
 	}
 	
 	@Override
-	public void createUser(User user)
+	public boolean createUser(User user)
 	{
 		Session s = sf.getCurrentSession();
 		s.save(user);
+		return true;
 	}
 	
 	@Override
-	public void updateUser(User user)
+	public boolean updateUser(User user)
 	{
 		Session s = sf.getCurrentSession();
 		s.update(user);
+		return true;
 	}
 }

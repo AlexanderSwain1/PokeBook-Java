@@ -43,39 +43,51 @@ public class MessageService
 	
 	public List<Message> getMessagesByPokemonID(int pokemon_id)
 	{
-		if(pokemon_id <= 0 || pokemon_id > 898) {
+		if(pokemon_id <= 0) {
+			return null;
+		} else if(pokemon_id > 898) {
 			return null;
 		}
 		
-		List<Message> list = md.getMessagesByPokemonID(pokemon_id);
-		return list;
+		return md.getMessagesByPokemonID(pokemon_id);
 	}
 	
-	public void createMessage(Message message)
+	public boolean createMessage(Message message)
 	{
+		if(message.getAuthor().getId() <= 0) {
+			return false;
+		} else if(message.getContent() == "") {
+			return false;
+		} else if(message.getPokemonId() <= 0) {
+			return false;
+		} else if(message.getPokemonId() > 898) {
+			return false;
+		}
 		message.setAuthor(ud.getUser(message.getAuthor().getId()));
-		md.createMessage(message);
+		return md.createMessage(message);
 	}
 	
 	public boolean updateMessage(Message message)
 	{
-		if(message.getId() <= 0) {
+		if(message.getContent() == "") {
 			return false;
-		} else if(message.getPokemonId() <= 0 || message.getPokemonId() > 898) {
+		} else if(message.getPokemonId() <= 0) {
+			return false;
+		} else if(message.getPokemonId() > 898) {
 			return false;
 		}
-		md.updateMessage(message);
-		return true;
+		return md.updateMessage(message);
 	}
 	
 	public boolean deleteMessage(Message message)
 	{
 		if(message.getId() <= 0) {
 			return false;
-		} else if(message.getPokemonId() <= 0 || message.getPokemonId() > 898) {
+		} else if(message.getPokemonId() <= 0) {
+			return false;
+		} else if(message.getPokemonId() > 898) {
 			return false;
 		}
-		md.deleteMessage(message);
-		return true;
+		return md.deleteMessage(message);
 	}
 }

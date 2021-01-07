@@ -16,7 +16,7 @@ public interface ILikeDao
 	
 	public List<Like> getLikesByMessageId(int messageId);
 	
-	public void createLike(Like like);
+	public boolean createLike(Like like);
 	
-	public void deleteLike(Like like);
+	public boolean deleteLike(Like like);
 }

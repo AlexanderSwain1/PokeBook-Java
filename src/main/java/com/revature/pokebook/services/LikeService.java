@@ -18,9 +18,10 @@ import com.revature.pokebook.models.User;
 @Service
 public class LikeService 
 {
+
+	private ILikeDao ld;
 	private IUserDao ud;
 	private IMessageDao md;
-	private ILikeDao ld;
 	
 	@Autowired
 	public LikeService(ILikeDao ld, IUserDao ud, IMessageDao md) {
@@ -50,13 +51,17 @@ public class LikeService
 		return ld.getLikesByUserId(messageId);
 	}
 	
-	public boolean create(Like like)
+	public boolean create(Like like) //Ask Gabriel if these checks break anything
 	{
+		if(like.getUser().getId() <= 0) {
+			return false;
+		} else if(like.getMessage().getId() <= 0) {
+			return false;
+		}
 		User user = ud.getUser(like.getUser().getId());
-		Message message = md.getMessage(like.getMessage().getId());
+		Message message = md.getMessage(like.getMessage().getId()); //Could be reduced to two lines
 		Like l = new Like(user, message);
-		ld.createLike(l);
-		return true;
+		return ld.createLike(l);
 	}
 	
 	public boolean delete(Like like)
@@ -68,7 +73,6 @@ public class LikeService
 		} else if(like.getUser().getId() <= 0) {
 			return false;
 		}
-		ld.deleteLike(like);
-		return true;
+		return ld.deleteLike(like);
 	}
 }

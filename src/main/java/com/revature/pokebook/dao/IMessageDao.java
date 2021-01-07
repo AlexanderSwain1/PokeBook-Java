@@ -16,9 +16,9 @@ public interface IMessageDao
 	
 	public List<Message> getMessagesByPokemonID(int pokemon_id);
 	
-	public void createMessage(Message message);
+	public boolean createMessage(Message message);
 	
-	public void updateMessage(Message message);
+	public boolean updateMessage(Message message);
 	
-	public void deleteMessage(Message message);
+	public boolean deleteMessage(Message message);
 }

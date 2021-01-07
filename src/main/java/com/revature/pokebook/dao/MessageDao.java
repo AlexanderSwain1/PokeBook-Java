@@ -22,6 +22,10 @@ public class MessageDao implements IMessageDao
 	@Autowired
 	private SessionFactory sf;
 	
+	public MessageDao() {
+		super();
+	}
+	
 	@Override
 	public List<Message> getMessages()
 	{
@@ -49,23 +53,26 @@ public class MessageDao implements IMessageDao
 	}
 	
 	@Override
-	public void createMessage(Message message)
+	public boolean createMessage(Message message)
 	{
 		Session s = sf.getCurrentSession();
 		s.save(message);
+		return true;
 	}
 	
 	@Override
-	public void updateMessage(Message message)
+	public boolean updateMessage(Message message)
 	{
 		Session s = sf.getCurrentSession();
 		s.update(message);
+		return true;
 	}
 	
 	@Override
-	public void deleteMessage(Message message)
+	public boolean deleteMessage(Message message)
 	{
 		Session s = sf.getCurrentSession();
 		s.delete(message);
+		return true;
 	}
 }

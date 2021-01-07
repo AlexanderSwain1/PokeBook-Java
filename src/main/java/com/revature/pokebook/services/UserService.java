@@ -54,24 +54,29 @@ public class UserService
 		return ud.getUserByEmail(email);
 	}
 	
-	public void createUser(User user)
+	public boolean createUser(User user)
 	{
-		ud.createUser(user);
-	}
-	
-	public boolean updateUser(User user)
-	{
-		if(user.getId() <= 0) {
+		if(user.getUsername() == "") {
+			return false;
+		} else if(user.getPassword() == "") {
 			return false;
 		}
-		ud.updateUser(user);
-		return true;
+		return ud.createUser(user);
+	}
+	
+	public boolean updateUser(User user) //How is this accessed
+	{
+		if(user.getId() == 0) {
+			return false;
+		}
+		return ud.updateUser(user);
 	}
 	
 	public User loginUser(User toLogin)
 	{
 		User user;
 		System.out.println("Login Service");
+		System.out.println(toLogin);
 		
 		if (toLogin.getId() != 0)
 		{
@@ -85,13 +90,13 @@ public class UserService
 		}
 		else if (toLogin.getEmail() != null)
 		{
-			System.out.println("toLogin.getEmail()");
+			//System.out.println("toLogin.getEmail()");
 			user= ud.getUserByEmail(toLogin.getEmail());
 		}
 		else
 			return null;
 		
-		System.out.println("toLoginPsssword: " + toLogin.getPassword() + "; user: " + user.getPassword());
+		//System.out.println("toLoginPsssword: " + toLogin.getPassword() + "; user: " + user.getPassword());
 		if (toLogin.getPassword().equals(user.getPassword()))
 			return user;
 		else
@@ -100,8 +105,9 @@ public class UserService
 	
 	public void logoutUser(User user)
 	{
-		//Not Implemented
-		//I dont think logout needs a backend function, as we can just delete 
-		//the user information held in the front end and reroute the user to login
+		
+		
+		
+		
 	}
 }

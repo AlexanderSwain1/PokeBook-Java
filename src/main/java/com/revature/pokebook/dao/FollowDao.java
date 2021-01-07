@@ -20,6 +20,10 @@ public class FollowDao implements IFollowDao
 	@Autowired
 	private SessionFactory sf;
 	
+	public FollowDao() {
+		super();
+	}
+	
 	@Override
 	public Follow getFollow(Follow follow){
 
@@ -62,9 +66,10 @@ public class FollowDao implements IFollowDao
 	}
 	
 	@Override
-	public void deleteFollow(Follow follow)
+	public boolean deleteFollow(Follow follow)
 	{
 		Session s = sf.getCurrentSession();
 		s.delete(follow);
+		return true;
 	}
 }

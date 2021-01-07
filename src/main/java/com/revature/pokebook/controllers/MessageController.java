@@ -78,14 +78,15 @@ public class MessageController
 			int currPoke = f.getPokemonId();
 			List<Message> currList = ms.getMessagesByPokemonID(currPoke);
 			messageList.addAll(currList);
-			//System.out.println("MessageList in this iteration: " + messageList);
+		}
+
+		messageList.sort(Comparator.comparing(Message::getMessagePostTime));
+		List<Message> result = new ArrayList<Message>();
+		for(int i=0; i<messageList.size(); i++) {
+			result.set(i, messageList.get(messageList.size() - i));
 		}
 		
-		//System.out.println("Before: " + messageList);
-		messageList.sort(Comparator.comparing(Message::getMessagePostTime));
-		//System.out.println("After: " + messageList);
-		
-		return ResponseEntity.status(HttpStatus.OK).body(messageList); //Even if its empty, just display nothing
+		return ResponseEntity.status(HttpStatus.OK).body(result);
 
 	}
 

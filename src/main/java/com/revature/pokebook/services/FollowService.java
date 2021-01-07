@@ -14,8 +14,8 @@ import com.revature.pokebook.models.Follow;
 @Service
 public class FollowService 
 {	
-	private IUserDao ud;
 	private IFollowDao fd;
+	private IUserDao ud;
 	
 	@Autowired
 	public FollowService(IFollowDao fd, IUserDao ud) {
@@ -29,6 +29,13 @@ public class FollowService
 	}
 	
 	public Follow getFollow(Follow follow) {
+		if(follow.getUser().getId() <= 0) {
+			return null;
+		} else if(follow.getPokemonId() <= 0) {
+			return null;
+		} else if(follow.getPokemonId() > 898) {
+			return null;
+		}
 		return fd.getFollow(follow);
 	}
 
@@ -42,7 +49,9 @@ public class FollowService
 	
 	public List<Follow> getByPokemonId(int pokemonId)
 	{
-		if(pokemonId <= 0 || pokemonId > 898) {
+		if(pokemonId <= 0) {
+			return null;
+		} else if(pokemonId > 898) {
 			return null;
 		}
 		return fd.getByPokemonId(pokemonId);
@@ -50,6 +59,13 @@ public class FollowService
 	
 	public Follow createFollow(Follow follow)
 	{
+		if(follow.getPokemonId() <= 0) {
+			return null;
+		} else if(follow.getPokemonId() > 898) {
+			return null;
+		} else if(follow.getUser().getId() <= 0) {
+			return null;
+		}
 		follow.setUser(ud.getUser(follow.getUser().getId()));
 		Follow f = fd.createFollow(follow);
 		return f;
@@ -59,13 +75,14 @@ public class FollowService
 	{
 		if(follow.getId() <= 0) {
 			return false;
-		} else if(follow.getPokemonId() <= 0 || follow.getPokemonId() > 898) {
+		} else if(follow.getPokemonId() <= 0) {
+			return false;
+		} else if(follow.getPokemonId() > 898) {
 			return false;
 		} else if(follow.getUser().getId() <= 0) {
 			return false;
 		}
-		fd.deleteFollow(follow);
-		return true;
+		return fd.deleteFollow(follow);
 	}
 	
 }

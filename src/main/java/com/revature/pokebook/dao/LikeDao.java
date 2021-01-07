@@ -19,6 +19,10 @@ public class LikeDao implements ILikeDao
 	@Autowired
 	private SessionFactory sf;
 	
+	public LikeDao() {
+		super();
+	}
+	
 	@Override
 	public List<Like> getLikes()
 	{
@@ -47,16 +51,18 @@ public class LikeDao implements ILikeDao
 	}
 	
 	@Override
-	public void createLike(Like like)
+	public boolean createLike(Like like)
 	{
 		Session s = sf.getCurrentSession();
 		s.save(like);
+		return true;
 	}
 	
 	@Override
-	public void deleteLike(Like like)
+	public boolean deleteLike(Like like)
 	{
 		Session s = sf.getCurrentSession();
 		s.delete(like);
+		return true;
 	}
 }

@@ -16,5 +16,5 @@ public interface IFollowDao
 	
 	public Follow createFollow(Follow follow);
 	
-	public void deleteFollow(Follow follow);
+	public boolean deleteFollow(Follow follow);
 }
