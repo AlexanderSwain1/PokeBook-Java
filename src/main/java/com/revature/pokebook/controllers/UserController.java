@@ -50,18 +50,18 @@ public class UserController
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getUser(@PathVariable("id") int id, HttpServletRequest request) 
 	{
-		System.out.println("id: " + id);
+		//System.out.println("id: " + id);
 		if (id == 0)
 		{
 			HttpSession session = request.getSession(false);
 			if (session != null) 
 			{
-				System.out.println("Session Exists");
+				//System.out.println("Session Exists");
 				return ResponseEntity.status(HttpStatus.OK).body((User)session.getAttribute("user"));
 			}
 			else
 			{
-				System.out.println("Session doesn't exist");
+				//System.out.println("Session doesn't exist");
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 			}
 		}
