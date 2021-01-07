@@ -64,9 +64,7 @@ public class FollowDao implements IFollowDao
 	@Override
 	public void deleteFollow(Follow follow)
 	{
-
 		Session s = sf.getCurrentSession();
-
 		s.delete(follow);
 	}
 }

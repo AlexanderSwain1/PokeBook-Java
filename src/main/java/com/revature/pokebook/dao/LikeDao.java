@@ -32,7 +32,9 @@ public class LikeDao implements ILikeDao
 	public List<Like> getLikesByUserId(int userId)
 	{
 		Session s = sf.getCurrentSession();
+		System.out.println(userId);
 		List<Like> list = s.createQuery("FROM Like WHERE user_id = " + userId).list();
+		System.out.println(list);
 		return list;
 	}
 	

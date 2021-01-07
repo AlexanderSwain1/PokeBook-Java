@@ -49,10 +49,10 @@ public class LikeService
 		ld.createLike(l);
 	}
 	
-	public void delete(int id)
+	public void delete(Like like)
 	{
-		Like l = new Like();
-		l.setId(id);
-		ld.deleteLike(l);
+		//Like l = new Like();
+		//l.setId(id);
+		ld.deleteLike(like);
 	}
 }
