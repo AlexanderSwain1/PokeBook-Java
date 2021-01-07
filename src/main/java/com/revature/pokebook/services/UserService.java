@@ -102,12 +102,4 @@ public class UserService
 		else
 			return null;
 	}
-	
-	public void logoutUser(User user)
-	{
-		
-		
-		
-		
-	}
 }
