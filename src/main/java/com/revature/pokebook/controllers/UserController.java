@@ -89,13 +89,13 @@ public class UserController
 		{
 			user.setId(((User)session.getAttribute("user")).getId());
 			us.updateUser(user);
+			session.setAttribute("user", user);
 			return ResponseEntity.status(HttpStatus.OK).body(true);
 		}
 		else
 		{
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false);
 		}
-
 	}
 
 	@PutMapping("/login")
