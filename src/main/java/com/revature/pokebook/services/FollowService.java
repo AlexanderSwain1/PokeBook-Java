@@ -73,13 +73,8 @@ public class FollowService
 	
 	public boolean deleteFollow(Follow follow)
 	{
+		System.out.println("DELETE SERVE: " + follow);
 		if(follow.getId() <= 0) {
-			return false;
-		} else if(follow.getPokemonId() <= 0) {
-			return false;
-		} else if(follow.getPokemonId() > 898) {
-			return false;
-		} else if(follow.getUser().getId() <= 0) {
 			return false;
 		}
 		return fd.deleteFollow(follow);

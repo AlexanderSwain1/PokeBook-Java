@@ -42,7 +42,6 @@ public class LikeService
 		}
 		return ld.getLikesByUserId(userId);
 	}
-	
 	public List<Like> getLikesByMessageId(int messageId)
 	{
 		if(messageId <= 0) {
