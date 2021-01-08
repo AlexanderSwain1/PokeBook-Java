@@ -125,14 +125,5 @@ public class UserController
 		}
 		else
 			return ResponseEntity.status(HttpStatus.OK).body(false);
-		
-		HttpSession session2 = request.getSession(false);
-		if (session2 != null) 
-		{
-		    session2.invalidate();
-			return ResponseEntity.status(HttpStatus.OK).body(true);
-		}
-		else
-			return ResponseEntity.status(HttpStatus.OK).body(false);
 	}
 }

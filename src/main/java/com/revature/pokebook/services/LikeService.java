@@ -66,13 +66,6 @@ public class LikeService
 	
 	public boolean delete(Like like)
 	{
-		if(like.getId() <= 0) {
-			return false;
-		} else if(like.getMessage().getId() <= 0) {
-			return false;
-		} else if(like.getUser().getId() <= 0) {
-			return false;
-		}
 		return ld.deleteLike(like);
 	}
 }
