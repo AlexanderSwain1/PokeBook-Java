@@ -1,4 +1,8 @@
 # PokeBook-Java
+
+# PokeBook-Angular link
+https://github.com/magnusjw/PokeBook-Angular/tree/master.
+
 ## Project Description
 Java side of PokeBook's Project
 
